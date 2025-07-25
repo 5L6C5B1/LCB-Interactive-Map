@@ -48,7 +48,7 @@ class Game:
         self.import_assets()
         self.setup(self.tmx_maps['main_3_reception'], 'spawn')
 
-        # OVERLAYS
+        # Overlays
         self.dialog_tree = None
 
     def toggle_fullscreen(self):
@@ -88,9 +88,23 @@ class Game:
         for group in (self.all_sprites, self.collision_sprites, self.transition_sprites, self.character_sprites):
             group.empty()
 
-        # Floor & Furnishing
+         # DEBUG: Check for missing tiles before creating sprites
+        print(f"Debugging map: {tmx_map}")
+        for layer in tmx_map.visible_layers:
+            if hasattr(layer, 'data'):
+                print(f"Checking layer: {layer.name}")
+                for x, y, gid in layer:
+                    if gid != 0:  # 0 means empty tile
+                        surf = tmx_map.get_tile_image_by_gid(gid)
+                        if surf is None:
+                            print(f"Missing tile: GID {gid} at ({x}, {y}) in layer '{layer.name}'")
+
+        # Floor & Furnishing (with safety check)
         for layer in ['Floor', 'Furnishing']:
             for x, y, surf in tmx_map.get_layer_by_name(layer).tiles():
+                if surf is None:
+                    print(f"Skipping None surface at ({x}, {y}) in layer '{layer}'")
+                    continue  # Skip creating sprite for missing tiles
                 Sprite((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, WORLD_LAYERS['bg'])
 
          # Transitions
