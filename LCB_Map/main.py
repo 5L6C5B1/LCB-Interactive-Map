@@ -84,6 +84,9 @@ class Game:
         self.audio = audio_importer('audio')
 
     def setup(self, tmx_map, player_start_pos):
+        # Get room name
+        self.current_room_name = tmx_map.properties.get('display_name', '')
+        
         # Clear map when transitioning
         for group in (self.all_sprites, self.collision_sprites, self.transition_sprites, self.character_sprites):
             group.empty()
@@ -215,8 +218,17 @@ class Game:
 
             # Drawing
             self.all_sprites.draw(self.player)
+            room_font = self.fonts['regular']
+            room_text = room_font.render(self.current_room_name, True, COLORS['white'])
+            shadow = room_font.render(self.current_room_name, True, COLORS['black'])
 
-            # OVERLAYS
+            room_pos = (10, WINDOW_HEIGHT - room_text.get_height() - 10)
+
+
+            self.display_surface.blit(shadow, (room_pos[0] + 1, room_pos[1] + 1)) # Shadow
+            self.display_surface.blit(room_text, room_pos) # White text
+
+            # Overlays
             if self.dialog_tree: self.dialog_tree.update()
 
             self.tint_screen(dt)
