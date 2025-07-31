@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="65">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="69">
+ <properties>
+  <property name="display_name" value="Level 3 Reception"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
  <tileset firstgid="1051" source="../../../bootyclap/data/tilesets/indoor.tsx"/>
  <tileset firstgid="1141" source="../tilesets/LCB_furnishing.tsx"/>
@@ -11,10 +14,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,201,202,227,228,228,228,55,
 11,3,3,3,12,0,0,0,0,0,0,0,0,201,227,155,253,253,253,55,
 56,28,28,28,55,0,0,0,0,0,0,0,0,226,155,253,253,253,253,55,
-56,53,53,53,55,0,0,0,0,0,0,0,0,251,280,253,253,253,253,55,
-56,78,78,78,85,0,0,0,0,0,0,0,0,135,40,88,253,253,253,55,
-56,50,50,50,64,3,3,3,3,3,3,3,3,3,14,24,253,253,253,55,
-326,50,50,50,28,28,28,28,28,28,28,28,28,28,111,24,253,253,253,55,
+63,53,53,53,55,0,0,0,0,0,0,0,0,251,280,253,253,253,253,55,
+28,78,78,78,85,0,0,0,0,0,0,0,0,135,40,88,253,253,253,55,
+53,50,50,50,64,3,3,3,3,3,3,3,3,3,14,24,253,253,253,55,
+78,50,50,50,28,28,28,28,28,28,28,28,28,28,111,24,253,253,253,55,
 376,50,50,50,53,53,53,53,53,53,53,53,53,53,28,24,253,253,253,210,
 81,50,50,50,78,78,78,78,78,78,78,78,78,78,53,24,24,253,253,210,
 81,50,50,50,50,50,50,50,50,50,50,50,50,50,78,24,24,24,24,210,
@@ -42,8 +45,8 @@
 0,0,0,0,0,1157,1158,1249,1250,1251,1252,1253,0,0,0,0,0,0,0,0,
 0,0,0,0,0,1176,1177,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,1195,1196,0,0,1363,1364,1364,1364,1365,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,1416,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,1435,1436,1436,1436,1436,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1356,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1375,1376,1376,1376,1376,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -82,7 +85,7 @@
    </properties>
    <point/>
   </object>
-  <object id="64" name="Character" x="752" y="876">
+  <object id="64" name="Character" x="1130" y="970">
    <properties>
     <property name="character_id" value="Cortana"/>
     <property name="direction" value="down"/>
@@ -94,51 +97,41 @@
  </objectgroup>
  <objectgroup id="6" name="Collisions">
   <object id="11" x="64.0003" y="398.666" width="186.667" height="30.6667"/>
-  <object id="12" x="252" y="383.333" width="22.6667" height="254"/>
-  <object id="13" x="257.333" y="640" width="321.333" height="26.6667"/>
-  <object id="16" x="575.997" y="704" width="317.333" height="42.6667"/>
-  <object id="21" x="905.337" y="764.003" width="313.333" height="94.6667"/>
-  <object id="22" x="1210.67" y="902.67" width="16" height="377.333"/>
-  <object id="24" x="1125.33" y="1257.33" width="92" height="20"/>
-  <object id="25" x="829.333" y="1262.66" width="93.3333" height="17.3333"/>
+  <object id="12" x="252" y="287.333" width="22.6667" height="350"/>
+  <object id="13" x="253.333" y="640" width="325.333" height="26.6667"/>
+  <object id="16" x="575.997" y="640.667" width="331.333" height="106"/>
+  <object id="21" x="905.337" y="734.003" width="313.333" height="124.667"/>
+  <object id="22" x="1210.67" y="846.67" width="16" height="433.333"/>
+  <object id="24" x="1125.33" y="1249.33" width="92" height="33"/>
+  <object id="25" x="829.333" y="1250.66" width="93.3333" height="29.3333"/>
   <object id="26" x="824.003" y="1024" width="13.3333" height="262.667"/>
-  <object id="27" x="764.003" y="1002.67" width="70.6667" height="21.3333"/>
+  <object id="27" x="767.003" y="992.67" width="70.6667" height="41.3333"/>
   <object id="29" x="762.67" y="1029.33" width="13.3333" height="138.667"/>
   <object id="30" x="629.33" y="1021.33" width="17.3333" height="146.667"/>
-  <object id="32" x="545.337" y="1005.34" width="94.6667" height="17.3333"/>
-  <object id="34" x="350.666" y="1002.66" width="130.667" height="20"/>
-  <object id="36" x="193.333" y="1004" width="96" height="20"/>
+  <object id="32" x="547.337" y="993.34" width="93.6667" height="32.3333"/>
+  <object id="34" x="355.166" y="993.66" width="121.167" height="29"/>
+  <object id="36" x="193.333" y="996" width="91.5" height="28"/>
   <object id="38" x="189.333" y="1021.33" width="16" height="152"/>
-  <object id="39" x="46.6663" y="477.333" width="17.3333" height="116"/>
-  <object id="40" x="49.3333" y="680" width="17.3333" height="506.667"/>
-  <object id="52" x="286.667" y="1016.67" width="6.66667" height="45.3333"/>
-  <object id="53" x="345" y="1020.33" width="5.66667" height="41.6667"/>
-  <object id="56" x="479.273" y="1020.55" width="5.63636" height="42"/>
-  <object id="57" x="538" y="1020.55" width="4.72727" height="42.7273"/>
- </objectgroup>
- <objectgroup id="3" name="Blocked">
-  <object id="48" x="64.6667" y="610.333" width="6.75" height="61.5"/>
-  <object id="58" x="64.667" y="1139.16" width="126.5" height="12.5"/>
-  <object id="59" x="641.503" y="1144.16" width="125" height="15"/>
+  <object id="39" x="46.6663" y="296" width="17.3333" height="243.334"/>
+  <object id="40" x="49.3333" y="671.333" width="17.3333" height="515.334"/>
+  <object id="52" x="277.667" y="1022.67" width="6.66667" height="45.3333"/>
+  <object id="53" x="355" y="1023.33" width="5.66667" height="41.6667"/>
+  <object id="56" x="470.773" y="1022.55" width="5.63636" height="42"/>
+  <object id="57" x="547.5" y="1020.55" width="4.72727" height="42.7273"/>
+  <object id="66" x="909.333" y="1274" width="15.3333" height="69.3333"/>
+  <object id="67" x="1121.33" y="1276" width="17.3333" height="67.3333"/>
  </objectgroup>
  <objectgroup id="5" name="Transition">
-  <object id="43" x="288.5" y="1030.33" width="62.5" height="12">
-   <properties>
-    <property name="pos" value="main_3_reception"/>
-    <property name="target" value="main_rooftop"/>
-   </properties>
-  </object>
-  <object id="44" x="482.25" y="1029.33" width="59.25" height="8.5">
-   <properties>
-    <property name="pos" value="main_3_reception"/>
-    <property name="target" value="main_rooftop"/>
-   </properties>
-  </object>
-  <object id="45" x="927.337" y="1315.33" width="189.333" height="7.91667">
+  <object id="68" x="922.5" y="1285.5" width="202" height="11">
    <properties>
     <property name="pos" value="main_3_reception"/>
     <property name="target" value="main_3"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="3" name="Blocked">
+  <object id="48" x="63.3334" y="610.333" width="6.75" height="61.5"/>
+  <object id="58" x="64.667" y="1139.16" width="126.5" height="12.5"/>
+  <object id="59" x="641.503" y="1144.16" width="125" height="15"/>
  </objectgroup>
 </map>
