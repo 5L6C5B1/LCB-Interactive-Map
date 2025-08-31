@@ -137,7 +137,7 @@ class Player(Entity):
             input_vector.x += 1
         
         # Sprint
-        if keys[pygame.K_LSHIFT or pygame.K_RSHIFT]:
+        if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
             self.speed = 400
         else:
             self.speed = 250

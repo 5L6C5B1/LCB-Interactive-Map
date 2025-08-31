@@ -86,12 +86,13 @@ class Game:
     def setup(self, tmx_map, player_start_pos):
         # Get room name
         self.current_room_name = tmx_map.properties.get('display_name', '')
-        
+        self.current_room_title = tmx_map.properties.get('display_title', '')
+
         # Clear map when transitioning
         for group in (self.all_sprites, self.collision_sprites, self.transition_sprites, self.character_sprites):
             group.empty()
 
-         # DEBUG: Check for missing tiles before creating sprites
+        # DEBUG: Check for missing tiles before creating sprites
         print(f"Debugging map: {tmx_map}")
         for layer in tmx_map.visible_layers:
             if hasattr(layer, 'data'):
@@ -110,7 +111,7 @@ class Game:
                     continue  # Skip creating sprite for missing tiles
                 Sprite((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, WORLD_LAYERS['bg'])
 
-         # Transitions
+        # Transitions
         for obj in tmx_map.get_layer_by_name('Transition'):
             TransitionSprite((obj.x, obj.y), (obj.width, obj.height), (obj.properties['target'], obj.properties['pos']), self.transition_sprites)
 
@@ -188,6 +189,8 @@ class Game:
         self.tint_surf.set_alpha(self.tint_progress)
         self.display_surface.blit(self.tint_surf, (0,0))
 
+    
+
     def run(self):
         while True:
             dt = self.clock.tick(60) / 1000
@@ -217,16 +220,44 @@ class Game:
             self.all_sprites.update(dt)
 
             # Drawing
-            self.all_sprites.draw(self.player)
+            self.all_sprites.draw(self.player) # Draw sprites
+            title_font = self.fonts['small']
             room_font = self.fonts['regular']
-            room_text = room_font.render(self.current_room_name, True, COLORS['white'])
-            shadow = room_font.render(self.current_room_name, True, COLORS['black'])
 
-            room_pos = (10, WINDOW_HEIGHT - room_text.get_height() - 10)
+            # Calculate positions
+            base_y = WINDOW_HEIGHT - 10
+            base_x = 10
+
+            # display_name - bottom text
+            if self.current_room_name:
+                room_text = room_font.render(self.current_room_name, True, COLORS['white'])
+                room_y = base_y - room_text.get_height()
+                
+                # Draw outline (multiple directions)
+                room_shadow = room_font.render(self.current_room_name, True, COLORS['black'])
+                for dx, dy in [(-1,-1), (-1,0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)]:
+                    self.display_surface.blit(room_shadow, (base_x + dx, room_y + dy))
+                
+                self.display_surface.blit(room_text, (base_x, room_y))
+
+            # display_title
+            if self.current_room_title:
+                title_text = title_font.render(self.current_room_title, True, COLORS['white'])
+                title_y = room_y - title_text.get_height() - 5 if self.current_room_name else base_y - title_text.get_height()
+                
+                # Draw outline (multiple directions)
+                title_shadow = title_font.render(self.current_room_title, True, COLORS['black'])
+                for dx, dy in [(-1,-1), (-1,0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)]:
+                    self.display_surface.blit(title_shadow, (base_x + dx, title_y + dy))
+                
+                self.display_surface.blit(title_text, (base_x, title_y))
 
 
-            self.display_surface.blit(shadow, (room_pos[0] + 1, room_pos[1] + 1)) # Shadow
-            self.display_surface.blit(room_text, room_pos) # White text
+            # room_text = room_font.render(self.current_room_name, True, COLORS['white'])
+            # shadow = room_font.render(self.current_room_name, True, COLORS['black'])
+            # room_pos = (10, WINDOW_HEIGHT - room_text.get_height() - 10)
+            # self.display_surface.blit(shadow, (room_pos[0] + 1, room_pos[1] + 1)) # Shadow
+            # self.display_surface.blit(room_text, room_pos) # White text
 
             # Overlays
             if self.dialog_tree: self.dialog_tree.update()
