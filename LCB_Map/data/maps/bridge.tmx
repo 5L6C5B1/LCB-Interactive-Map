@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="7" height="22" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="17">
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1175" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3008"/>
+ </tileset>
+ <tileset firstgid="1176" source="../tilesets/LCB_furnishing.tsx"/>
+ <layer id="1" name="Floor" width="7" height="22">
+  <data encoding="csv">
+51,74,958,958,958,958,55,
+76,149,74,958,74,74,55,
+76,74,149,74,958,74,55,
+76,149,74,149,74,958,55,
+51,149,149,149,74,74,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,80,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+51,149,149,149,149,149,55,
+76,149,149,149,149,149,80,
+76,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="Furnishing" width="7" height="22">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,1194,0,0,0,1194,0,
+0,1213,0,0,0,1213,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,1194,0,0,0,1194,0,
+0,1213,0,0,0,1213,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,1194,0,0,0,1194,0,
+0,1213,0,0,0,1213,0,
+36,427,428,428,428,429,37
+</data>
+ </layer>
+ <objectgroup id="5" name="Entities">
+  <object id="1" name="Player" x="223.167" y="163.667">
+   <properties>
+    <property name="direction" value="down"/>
+    <property name="pos" value="main_3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="Player" x="223.333" y="1252.67">
+   <properties>
+    <property name="direction" value="up"/>
+    <property name="pos" value="annexe_2"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Collisions">
+  <object id="3" x="-42" y="1343.33" width="134.667" height="126.667"/>
+  <object id="4" x="353.333" y="1342" width="134.667" height="126.667"/>
+  <object id="6" x="-38" y="-107.333" width="104" height="1466"/>
+  <object id="8" x="382.667" y="-108.667" width="100.667" height="1464.67"/>
+  <object id="9" x="48" y="225.333" width="78" height="106.667"/>
+  <object id="10" x="323.667" y="225.333" width="78" height="106.667"/>
+  <object id="11" x="321.667" y="674" width="78" height="106.667"/>
+  <object id="12" x="47.6667" y="674" width="78" height="106.667"/>
+  <object id="13" x="49" y="1186" width="78" height="106.667"/>
+  <object id="14" x="320.333" y="1183.33" width="78" height="106.667"/>
+ </objectgroup>
+ <objectgroup id="7" name="Transition">
+  <object id="15" x="82" y="1369.33" width="282.667" height="7.33333">
+   <properties>
+    <property name="pos" value="bridge"/>
+    <property name="target" value="annexe_2"/>
+   </properties>
+  </object>
+  <object id="16" x="56.6667" y="22.6667" width="334.667" height="12">
+   <properties>
+    <property name="pos" value="bridge"/>
+    <property name="target" value="main_3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
