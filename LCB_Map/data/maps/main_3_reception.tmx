@@ -58,7 +58,7 @@
 </data>
  </layer>
  <objectgroup id="4" name="Entities">
-  <object id="42" name="Player" x="479" y="858">
+  <object id="42" name="Player" x="512" y="832">
    <properties>
     <property name="direction" value="down"/>
     <property name="pos" value="spawn"/>
@@ -128,6 +128,6 @@
  <objectgroup id="3" name="Blocked">
   <object id="48" x="52.5834" y="576.583" width="6.75" height="111"/>
   <object id="58" x="51.667" y="1107.49" width="151.5" height="12.5"/>
-  <object id="59" x="641.503" y="1144.16" width="125" height="15"/>
+  <object id="59" x="629.503" y="1144.16" width="158" height="15"/>
  </objectgroup>
 </map>

@@ -258,7 +258,7 @@
     <property name="target" value="main_upperrooftop"/>
    </properties>
   </object>
-  <object id="32" x="560.5" y="2317" width="5.5" height="73">
+  <object id="32" x="560.5" y="2317" width="5.5" height="98.3333">
    <properties>
     <property name="pos" value="main_rooftop"/>
     <property name="target" value="main_rooftop_lab2"/>
