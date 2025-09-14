@@ -112,13 +112,7 @@
     <property name="target" value="main_3"/>
    </properties>
   </object>
-  <object id="69" x="474.333" y="1031.33" width="74.6667" height="4.33333">
-   <properties>
-    <property name="pos" value="main_3_reception"/>
-    <property name="target" value="main_rooftop"/>
-   </properties>
-  </object>
-  <object id="70" x="282" y="1032.5" width="74.6667" height="4.33333">
+  <object id="69" x="464.833" y="1031.33" width="92.1667" height="4.33333">
    <properties>
     <property name="pos" value="main_3_reception"/>
     <property name="target" value="main_rooftop"/>

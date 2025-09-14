@@ -4,7 +4,9 @@
   <property name="display_name" value="Upper Rooftop Level"/>
   <property name="display_title" value="Main Building (UR)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1425" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3648"/>
+ </tileset>
  <tileset firstgid="1426" source="../tilesets/LCB_furnishing.tsx"/>
  <layer id="1" name="Floor" width="35" height="32">
   <data encoding="csv">
@@ -95,8 +97,8 @@
   </object>
   <object id="17" name="Player" x="384" y="1792">
    <properties>
+    <property name="direction" value="up"/>
     <property name="pos" value="main_upperrooftop_hall7"/>
-    <property name="target" value="up"/>
    </properties>
    <point/>
   </object>
