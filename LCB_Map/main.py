@@ -1,15 +1,17 @@
 import pygame
 import pygame_menu
+import datetime
 from button import Button
 from settings import *
 from game_data import *
 from pytmx.util_pygame import load_pygame
 from os.path import join
+from timer import Timer
 
-from sprites import Sprite, AnimatedSprite, BorderSprite, CollidableSprite, TransitionSprite
+from sprites import Sprite, AnimatedSprite, BorderSprite, CollidableSprite, TransitionSprite, BlockedSprite
 from entities import Player, Character
 from groups import AllSprites
-from dialog import DialogTree
+from dialog import DialogTree, DialogSprite
 from course_index import CourseIndex
 
 from support import *
@@ -18,6 +20,7 @@ from course import Course
 icon = pygame.image.load('graphics/icons/lcblogo.png')
 bg = pygame.image.load('graphics/backgrounds/background.png')
 howToBG = pygame.image.load('graphics/backgrounds/howtoplay.png')
+
 
 fullscreen = False
 
@@ -29,13 +32,16 @@ class Game:
         pygame.display.set_caption('LCB Interactive Map | Press F11 to toggle fullscreen')
         self.clock = pygame.time.Clock()
 
-        # Course Index (UOE)
-
         # Groups
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
         self.character_sprites = pygame.sprite.Group()
         self.transition_sprites = pygame.sprite.Group()
+        self.blocked_sprites = pygame.sprite.Group()
+
+        # Blocked Collisions
+        self.blocked_dialog = None  # Track blocked dialog state
+        self.blocked_dialog_timer = Timer(1500)  # Auto-hide dialog
 
         # Transition / Tint
         self.transition_target = None
@@ -43,13 +49,20 @@ class Game:
         self.tint_mode = 'untint'
         self.tint_progress = 0
         self.tint_direction = -1
-        self.tint_speed = 600        
+        self.tint_speed = 600
 
+        # Pause Menu
+        self.paused = False
+        self.pause_menu_alpha = 0
+        self.pause_fade_speed = 400
+        
         self.import_assets()
         self.setup(self.tmx_maps['main_3_reception'], 'spawn')
 
         # Overlays
         self.dialog_tree = None
+        self.course_index = CourseIndex(self.fonts, self.course_frames)
+        self.index_open = False
 
     def toggle_fullscreen(self):
         global fullscreen
@@ -115,9 +128,34 @@ class Game:
         for obj in tmx_map.get_layer_by_name('Transition'):
             TransitionSprite((obj.x, obj.y), (obj.width, obj.height), (obj.properties['target'], obj.properties['pos']), self.transition_sprites)
 
-        # Collisions
+        self.blocked_sprites.empty()
+
+        # Collisions + Blocked Collisions
         for obj in tmx_map.get_layer_by_name('Collisions'):
-            BorderSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), self.collision_sprites)
+            if obj.properties.get('collision_type') == 'blocked':
+            # Check which type of blocked collision this is and get the message
+                message_type = None
+                message_text = "You can't go there!"  # Default message
+                
+                if 'inaccessible' in obj.properties and obj.properties['inaccessible']:
+                    message_type = 'inaccessible'
+                    message_text = obj.properties['inaccessible']
+                elif 'fire_exit' in obj.properties and obj.properties['fire_exit']:
+                    message_type = 'fire_exit'
+                    message_text = obj.properties['fire_exit']
+                elif 'dep_office' in obj.properties and obj.properties['dep_office']:
+                    message_type = 'dep_office'
+                    message_text = obj.properties['dep_office']
+                elif 'office' in obj.properties and obj.properties['office']:
+                    message_type = 'office'
+                    message_text = obj.properties['office']
+                
+                print(f"Creating blocked sprite with message: {message_text}")  # Debug line
+                BlockedSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), 
+                            self.blocked_sprites, message_type, message_text)
+            else:
+                BorderSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), 
+                            self.collision_sprites)
         
         # Entities
         for obj in tmx_map.get_layer_by_name('Entities'):
@@ -142,10 +180,27 @@ class Game:
                         radius = obj.properties['radius'],
                         notice_sound = self.audio['notice'])
                 
-# DIALOG SYSTEM 
     def input(self):
-        if not self.dialog_tree:
-            keys = pygame.key.get_just_pressed()
+        keys = pygame.key.get_just_pressed()
+
+        # Pause menu handling
+        if keys[pygame.K_ESCAPE]:
+            self.toggle_pause()
+            return
+        
+        # Course index input (when index is open, handle its navigation)
+        if self.index_open:
+            # Pass input to course index for navigation
+            self.course_index.input()
+            
+            # Close course index with Z or TAB
+            if keys[pygame.K_z] or keys[pygame.K_TAB]:
+                self.index_open = False
+                self.player.blocked = False
+            return
+
+        # If not paused, able to interact with NPC for dialog
+        if not self.paused and not self.dialog_tree:
             if keys[pygame.K_SPACE]:
                 for character in self.character_sprites:
                     if check_connection(100, self.player, character):
@@ -154,9 +209,99 @@ class Game:
                         self.create_dialog(character) # CREATE DIALOG
                         character.can_rotate = False
 
-            if keys[pygame.K_z]:
+            if keys[pygame.K_z] or keys[pygame.K_TAB]:
                 self.index_open = not self.index_open
                 self.player.blocked = not self.player.blocked
+
+    # Pause menu
+    def toggle_pause(self):
+        self.paused = not self.paused
+        if self.paused:
+            self.player.block()
+        else:
+            self.player.unblock()
+
+    def handle_pause_menu(self, dt):
+        if not self.paused:
+            return
+        
+        # Menu options positions (centered)
+        center_x = WINDOW_WIDTH // 2
+        center_y = WINDOW_HEIGHT // 2
+        
+        # Create buttons
+        btn_image = import_image('graphics', 'ui', 'button_rect')
+        btn_image = pygame.transform.scale(btn_image, (250, 50))
+        
+        continue_btn = Button(image=btn_image, pos=(center_x, 346.5),
+                            text_input='CONTINUE', font=self.fonts['regular'], 
+                            base_color=COLORS['normal'], hover_color=COLORS['dark'])
+        
+        main_menu_btn = Button(image=btn_image, pos=(center_x, 413.2),
+                            text_input='MAIN MENU', font=self.fonts['regular'], 
+                            base_color=COLORS['normal'], hover_color=COLORS['dark'])
+        
+        exit_btn = Button(image=btn_image, pos=(center_x, 480),
+                        text_input='EXIT TO DESKTOP', font=self.fonts['regular'], 
+                        base_color=COLORS['normal'], hover_color=COLORS['dark'])
+        
+        # Get mouse position for hover
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_clicked = pygame.mouse.get_pressed()[0]  # Left mouse button
+        keys = pygame.key.get_pressed()
+        
+        # Handle button clicks
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.toggle_pause()
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:  # Left click
+                if continue_btn.checkInput(mouse_pos):
+                    self.toggle_pause()
+                elif main_menu_btn.checkInput(mouse_pos):
+                    # Reset game state before going to main menu
+                    self.paused = False
+                    self.player.unblock()  # Make sure player is unblocked
+                    self.dialog_tree = None  # Clear any dialog
+                    self.index_open = False  # Close index
+                    # Reset any other game state as needed
+                    game.main_menu()
+                elif exit_btn.checkInput(mouse_pos):
+                    pygame.quit()
+                    exit()
+        
+        # Draw and update button colors
+        for button in [continue_btn, main_menu_btn, exit_btn]:
+            button.changeColor(mouse_pos)
+        
+        # Draw semi-transparent overlay
+        overlay = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT))
+        overlay.set_alpha(128)
+        overlay.fill((0, 0, 0))
+        self.display_surface.blit(overlay, (0, 0))
+        
+        # Draw pause menu background
+        menu_width, menu_height = 700, 500
+        menu_x = center_x - menu_width / 2
+        menu_y = center_y - menu_height / 2
+        
+        pause_bg_rect = pygame.FRect((menu_x, menu_y), (menu_width, menu_height))
+        pygame.draw.rect(self.display_surface, COLORS.get('navy', (0, 50, 100)), pause_bg_rect, 0, 12, 12, 12, 12)
+        
+        # Draw "PAUSED" title
+        pause_text = self.fonts['menu title'].render('PAUSED', True, COLORS['white'])
+        pause_rect = pause_text.get_rect(center=(center_x, 220.7))
+        self.display_surface.blit(pause_text, pause_rect)
+        
+        # Draw current date/time
+        current_time = datetime.datetime.now().strftime("%Y/%m/%d - %H:%M")
+        time_text = self.fonts['small'].render(current_time, True, COLORS['white'])
+        time_rect = time_text.get_rect(center=(center_x, center_y - 90))
+        self.display_surface.blit(time_text, time_rect)
+        
+        # Draw buttons
+        for button in [continue_btn, main_menu_btn, exit_btn]:
+            button.update(self.display_surface)
 
     def create_dialog(self, character):
         if not self.dialog_tree:
@@ -166,6 +311,27 @@ class Game:
         self.dialog_tree = None
         self.player.unblock()
     
+    def check_blocked(self):
+        if not self.blocked_dialog:  # Only check if no dialog is currently showing
+            for blocked_sprite in self.blocked_sprites:
+                if self.player.hitbox.colliderect(blocked_sprite.rect):
+                    print(f"Player collided with blocked sprite: {blocked_sprite.message_text}")  # Debug
+                    self.show_blocked_dialog(blocked_sprite.message_text)
+                    break
+
+    def show_blocked_dialog(self, message_text):
+        if not self.blocked_dialog and message_text:  # Make sure message_text is not empty
+            print(f"Showing blocked dialog: {message_text}")  # Debug line
+            self.blocked_dialog = DialogSprite(message_text, self.player, self.all_sprites, self.fonts['dialog'])
+            self.blocked_dialog_timer.activate()
+
+    def update_blocked_dialog(self):
+        if self.blocked_dialog:
+            self.blocked_dialog_timer.update()
+            if not self.blocked_dialog_timer.active:
+                self.blocked_dialog.kill()
+                self.blocked_dialog = None
+
     # Transitioning to other areas
     def transition_check(self):
         sprites = [sprite for sprite in self.transition_sprites if sprite.rect.colliderect(self.player.hitbox)]
@@ -195,29 +361,25 @@ class Game:
         while True:
             dt = self.clock.tick(60) / 1000
             self.display_surface.fill('black')
-            play_mouse_pos = pygame.mouse.get_pos()
-
-            # play_back = Button(image=None, pos=(640,460),
-            #                    text_input='BACK', font=self.fonts['regular'], base_color=COLORS['white'], hover_color=COLORS['gold'])
-            
-            # play_back.changeColor(play_mouse_pos)
-            # play_back.update(self.display_surface)
 
             # Event Loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
-                # if event.type == pygame.MOUSEBUTTONDOWN:
-                #     if play_back.checkInput(play_mouse_pos):
-                #         game.main_menu()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
                     self.toggle_fullscreen()
 
+                if self.index_open and event.type == pygame.MOUSEWHEEL:
+                    self.course_index.handle_scroll(event)
+
             # Game Logic
             self.input()
-            self.transition_check()
-            self.all_sprites.update(dt)
+            if not self.paused:
+                self.transition_check()
+                self.check_blocked()
+                self.update_blocked_dialog()
+                self.all_sprites.update(dt)
 
             # Drawing
             self.all_sprites.draw(self.player) # Draw sprites
@@ -252,41 +414,40 @@ class Game:
                 
                 self.display_surface.blit(title_text, (base_x, title_y))
 
-
-            # room_text = room_font.render(self.current_room_name, True, COLORS['white'])
-            # shadow = room_font.render(self.current_room_name, True, COLORS['black'])
-            # room_pos = (10, WINDOW_HEIGHT - room_text.get_height() - 10)
-            # self.display_surface.blit(shadow, (room_pos[0] + 1, room_pos[1] + 1)) # Shadow
-            # self.display_surface.blit(room_text, room_pos) # White text
-
             # Overlays
-            if self.dialog_tree: self.dialog_tree.update()
+            if not self.paused:
+                if self.dialog_tree: 
+                    self.dialog_tree.update()
+                if self.index_open: 
+                    self.course_index.update(dt)
 
-            self.tint_screen(dt)
+            # Handle pause menu (this will draw over everything)
+            self.handle_pause_menu(dt)
+
+            # Tint screen (existing transition system)
+            if not self.paused:  # Only do transitions when not paused
+                self.tint_screen(dt)
             pygame.display.update()
 
     def howTo(self):
+        # Resizing back icon
+        back_icon = pygame.image.load('graphics/icons/back.png')
+        back_icon_resize = pygame.transform.scale(back_icon, (48, 48))
+
         while True:
             self.display_surface.blit(howToBG, (0,0))
 
             howTo_mouse_pos = pygame.mouse.get_pos()
 
-            # howTo_text = self.fonts['bold'].render('add background image of play controls', True, COLORS['black'])
-            # howTo_rect = howTo_text.get_rect(center=(640,260))
-            # self.display_surface.blit(howTo_text, howTo_rect)
-
-            howTo_back = Button(image=None, pos=(640,460), text_input='BACK', font=self.fonts['regular'], 
-            base_color=COLORS['black'], hover_color=COLORS['gold'])
-
-            howTo_back.changeColor(howTo_mouse_pos)
-            howTo_back.update(self.display_surface)
+            icon_rect = pygame.Rect(35, 35, 48, 48)  # x, y, width, height
+            self.display_surface.blit(back_icon_resize, (35, 35))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if howTo_back.checkInput(howTo_mouse_pos):
+                    if icon_rect.collidepoint(howTo_mouse_pos):
                         game.main_menu()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
                     self.toggle_fullscreen()

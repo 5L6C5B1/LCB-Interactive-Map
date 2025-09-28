@@ -86,13 +86,6 @@
    </properties>
    <point/>
   </object>
-  <object id="2" name="Player" x="815.333" y="1118.67">
-   <properties>
-    <property name="direction" value="right"/>
-    <property name="pos" value="annexe_2"/>
-   </properties>
-   <point/>
-  </object>
   <object id="3" name="Player" x="1184" y="1185">
    <properties>
     <property name="direction" value="up"/>

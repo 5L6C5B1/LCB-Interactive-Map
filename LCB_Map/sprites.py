@@ -36,3 +36,11 @@ class AnimatedSprite(Sprite):
 
     def update(self, dt):
         self.animate(dt)
+
+class BlockedSprite(pygame.sprite.Sprite):
+    def __init__(self, pos, surf, groups, message_type, message_text):
+        super().__init__(groups)
+        self.image = surf
+        self.rect = surf.get_frect(topleft=pos)
+        self.message_type = message_type  # e.g., 'inaccessible', 'fire_exit', etc.
+        self.message_text = message_text  # The actual message to display

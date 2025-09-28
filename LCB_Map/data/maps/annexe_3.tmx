@@ -4,8 +4,12 @@
   <property name="display_name" value="Level 3"/>
   <property name="display_title" value="Annexe Building (L3)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1426" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
  <layer id="1" name="Floor" width="14" height="12">
   <data encoding="csv">
 11,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,12,
@@ -27,8 +31,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,1441,1440,0,0,0,0,0,0,0,0,0,0,
-0,0,1460,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1566,1565,0,0,0,0,0,0,0,0,0,0,
+0,0,1585,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,

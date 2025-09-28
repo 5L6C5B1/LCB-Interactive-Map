@@ -4,14 +4,20 @@
   <property name="display_name" value="Rooftop Level"/>
   <property name="display_title" value="Main Building (R)"/>
  </properties>
- <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1425" columns="25">
-  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3648"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
  </tileset>
- <tileset firstgid="1426" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="779" columns="19">
-  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="2624"/>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
  </tileset>
- <tileset firstgid="2205" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1425" columns="25">
-  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3648"/>
+ <tileset firstgid="2558" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="4108" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="5658" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
  </tileset>
  <layer id="1" name="Floor" width="20" height="80">
   <data encoding="csv">
@@ -100,13 +106,13 @@
  <layer id="3" name="Furnishing" width="20" height="80">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1442,1443,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1461,1462,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,1480,1481,0,0,1641,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,1641,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1958,1959,1960,1961,0,0,1641,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1977,1978,1979,1980,0,0,1641,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1996,1997,1998,1999,0,0,1660,1606,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1567,1568,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1586,1587,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1605,1606,0,0,1766,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1766,0,0,0,0,0,0,0,0,0,
+0,0,0,0,2083,2084,2085,2086,0,0,1766,0,0,0,0,0,0,0,0,0,
+0,0,0,0,2102,2103,2104,2105,0,0,1766,0,0,0,0,0,0,0,0,0,
+0,0,0,0,2121,2122,2123,2124,0,0,1785,1731,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -117,9 +123,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,1844,1845,1846,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,1863,1864,1865,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,1882,1883,1884,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1969,1970,1971,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1988,1989,1990,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,2007,2008,2009,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

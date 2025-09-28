@@ -4,8 +4,12 @@
   <property name="display_name" value="Auditorium"/>
   <property name="display_title" value="Annexe Building (L2)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
  <layer id="1" name="Floor" width="19" height="34">
   <data encoding="csv">
 11,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,1313,12,
@@ -97,7 +101,7 @@
   <object id="4" x="-144" y="-72.6667" width="210" height="2312.67"/>
   <object id="5" x="-144" y="2078" width="1488.67" height="161.333"/>
   <object id="6" x="1152" y="2002.67" width="192" height="236"/>
-  <object id="7" x="128.333" y="469" width="959" height="73"/>
+  <object id="7" x="136.151" y="469.3" width="944.182" height="72.4005"/>
   <object id="8" x="192" y="612" width="831" height="91"/>
   <object id="9" x="192" y="868.833" width="831" height="91"/>
   <object id="10" x="191.833" y="1124.83" width="831" height="91"/>
