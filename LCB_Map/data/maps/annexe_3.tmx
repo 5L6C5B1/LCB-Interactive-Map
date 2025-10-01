@@ -43,7 +43,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="Entities">
-  <object id="1" name="Player" x="128" y="576">
+  <object id="1" name="Player" x="256" y="448">
    <properties>
     <property name="direction" value="up"/>
     <property name="pos" value="annexe_2"/>
@@ -53,14 +53,7 @@
   <object id="2" name="Player" x="768" y="414">
    <properties>
     <property name="direction" value="left"/>
-    <property name="pos" value="annexe_3_eventhall"/>
-   </properties>
-   <point/>
-  </object>
-  <object id="20" name="Player" x="384" y="576">
-   <properties>
-    <property name="direction" value="up"/>
-    <property name="pos" value="annexe_2"/>
+    <property name="pos" value="annee_3_theroof"/>
    </properties>
    <point/>
   </object>

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="58" height="70" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="103">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="58" height="70" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="105">
  <properties>
   <property name="display_name" value="Library"/>
   <property name="display_title" value="Main Building (L2)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
  <layer id="1" name="Floor" width="58" height="70">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,868,63,0,0,64,868,868,868,868,868,868,868,868,868,868,868,868,868,868,868,868,12,
@@ -156,12 +160,32 @@
  </layer>
  <objectgroup id="3" name="Entities">
   <object id="9" name="Character" x="1761.25" y="1535.75">
+   <properties>
+    <property name="character_id" value="Cortana"/>
+    <property name="direction" value="down"/>
+    <property name="graphic" value="cortana"/>
+    <property name="radius" value="0"/>
+   </properties>
    <point/>
   </object>
   <object id="10" name="Player" x="1272.67" y="413.333">
    <properties>
     <property name="direction" value="left"/>
     <property name="pos" value="main_2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="103" name="Player" x="2739.5" y="2199.5">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="pos" value="main_2_lab5"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="104" name="Player" x="2496" y="320">
+   <properties>
+    <property name="direction" value="down"/>
+    <property name="pos" value="main_2_upperlibrary"/>
    </properties>
    <point/>
   </object>
@@ -269,7 +293,7 @@
   <object id="89" x="2422.36" y="122" width="154.545" height="5.27273">
    <properties>
     <property name="pos" value="main_2_library"/>
-    <property name="target" value="main_2_lab5"/>
+    <property name="target" value="main_2_upperlibrary"/>
    </properties>
   </object>
   <object id="90" x="2831.5" y="2112" width="6.5" height="175.5">
