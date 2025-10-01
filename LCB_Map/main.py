@@ -57,11 +57,13 @@ class Game:
         self.pause_fade_speed = 400
         
         self.import_assets()
+        # DEBUG: Print what icons were loaded
+        print("Icons loaded:", list(self.course_frames['icons'].keys()))
         self.setup(self.tmx_maps['main_3_reception'], 'spawn')
 
         # Overlays
         self.dialog_tree = None
-        self.course_index = CourseIndex(self.fonts, self.course_frames)
+        self.course_index = CourseIndex(UNIVERSITY_PARTNERS, COURSE_DATA, self.fonts, self.course_frames['ui'], self.course_frames['icons'])
         self.index_open = False
 
     def toggle_fullscreen(self):
@@ -149,8 +151,20 @@ class Game:
                 elif 'office' in obj.properties and obj.properties['office']:
                     message_type = 'office'
                     message_text = obj.properties['office']
+                elif 'fem_restroom' in obj.properties and obj.properties['fem_restroom']:
+                    message_type = 'fem_restroom'
+                    message_text = obj.properties['fem_restroom']
+                elif 'male_restroom' in obj.properties and obj.properties['male_restroom']:
+                    message_type = 'male_restroom'
+                    message_text = obj.properties['male_restroom']
+                elif 'stairs' in obj.properties and obj.properties['stairs']:
+                    message_type = 'stairs'
+                    message_text = obj.properties['stairs']
+                elif 'store' in obj.properties and obj.properties['store']:
+                    message_type = 'store'
+                    message_text = obj.properties['store']
                 
-                print(f"Creating blocked sprite with message: {message_text}")  # Debug line
+                # print(f"Creating blocked sprite with message: {message_text}") # Debug
                 BlockedSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), 
                             self.blocked_sprites, message_type, message_text)
             else:
@@ -371,7 +385,7 @@ class Game:
                     self.toggle_fullscreen()
 
                 if self.index_open and event.type == pygame.MOUSEWHEEL:
-                    self.course_index.handle_scroll(event)
+                    self.course_index.handle_scroll(-event.y)
 
             # Game Logic
             self.input()
