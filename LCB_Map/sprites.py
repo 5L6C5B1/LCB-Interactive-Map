@@ -42,5 +42,5 @@ class BlockedSprite(pygame.sprite.Sprite):
         super().__init__(groups)
         self.image = surf
         self.rect = surf.get_frect(topleft=pos)
-        self.message_type = message_type  # e.g., 'inaccessible', 'fire_exit', etc.
+        self.message_type = message_type  # 'inaccessible', 'fire_exit', etc.
         self.message_text = message_text  # The actual message to display

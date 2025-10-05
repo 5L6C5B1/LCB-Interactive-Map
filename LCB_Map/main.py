@@ -1,6 +1,9 @@
 import pygame
 import pygame_menu
 import datetime
+import subprocess
+import sys
+from pathlib import Path
 from button import Button
 from settings import *
 from game_data import *
@@ -65,6 +68,10 @@ class Game:
         self.dialog_tree = None
         self.course_index = CourseIndex(UNIVERSITY_PARTNERS, COURSE_DATA, self.fonts, self.course_frames['ui'], self.course_frames['icons'])
         self.index_open = False
+
+        # Minigames
+        self.minigame_active = False
+        self.minigame_callback = None
 
     def toggle_fullscreen(self):
         global fullscreen
@@ -317,10 +324,6 @@ class Game:
         for button in [continue_btn, main_menu_btn, exit_btn]:
             button.update(self.display_surface)
 
-    def create_dialog(self, character):
-        if not self.dialog_tree:
-            self.dialog_tree = DialogTree(character, self.player, self.all_sprites, self.fonts['dialog'], self.end_dialog)
-
     def end_dialog(self, character):
         self.dialog_tree = None
         self.player.unblock()
@@ -334,9 +337,16 @@ class Game:
                     break
 
     def show_blocked_dialog(self, message_text):
-        if not self.blocked_dialog and message_text:  # Make sure message_text is not empty
-            print(f"Showing blocked dialog: {message_text}")  # Debug line
-            self.blocked_dialog = DialogSprite(message_text, self.player, self.all_sprites, self.fonts['dialog'])
+        if not self.blocked_dialog and message_text:
+            print(f"Showing blocked dialog: {message_text}")
+            self.blocked_dialog = DialogSprite(
+                message_text, 
+                None,  # No character needed
+                None,  # Don't add to sprite group
+                self.fonts['dialog'],
+                '',  # Empty speaker name for system messages (blocked collision dialogs)
+                self.fonts['bold']
+            )
             self.blocked_dialog_timer.activate()
 
     def update_blocked_dialog(self):
@@ -345,6 +355,112 @@ class Game:
             if not self.blocked_dialog_timer.active:
                 self.blocked_dialog.kill()
                 self.blocked_dialog = None
+
+    # Minigames
+    def launch_minigame(self, game_name, callback):
+        """Launch external minigame and store callback"""
+        self.minigame_callback = callback
+        self.minigame_active = True
+        
+        # Minigames are inside LCB_Map folder, so use relative paths from current directory
+        if game_name == 'space_invaders':
+            possible_paths = [
+                Path('Space_Invaders/code/main.py'),
+                Path('Space_Invaders/main.py'),
+            ]
+        elif game_name == 'breakout':
+            possible_paths = [
+                Path('Breakout/main.py'),
+                Path('Breakout/code/main.py'),
+            ]
+        else:
+            print(f"Unknown game: {game_name}")
+            self.minigame_active = False
+            if self.minigame_callback:
+                self.minigame_callback('lose')
+                self.minigame_callback = None
+            return
+        
+        # Find the first path that exists
+        minigame_path = None
+        for path in possible_paths:
+            if path.exists():
+                minigame_path = path
+                print(f"Found minigame at: {path.absolute()}")
+                break
+        
+        if minigame_path is None:
+            print(f"ERROR: Minigame '{game_name}' not found in any of these locations:")
+            for path in possible_paths:
+                print(f"  - {path.absolute()}")
+            print(f"Current directory: {Path.cwd()}")
+            self.minigame_active = False
+            if self.minigame_callback:
+                self.minigame_callback('lose')
+                self.minigame_callback = None
+            return
+        
+        try:
+            print(f"Launching minigame: {minigame_path.absolute()}") # debug
+
+            if minigame_path.parent.name == 'code':
+                # If main.py is in a 'code' subfolder, go up one more level
+                working_dir = minigame_path.parent.parent.absolute()
+            else:
+                # Otherwise use the direct parent
+                working_dir = minigame_path.parent.absolute()
+            
+            print(f"Working directory: {working_dir}") # debug
+            
+            # Launch minigame as subprocess
+            result = subprocess.run(
+                [sys.executable, str(minigame_path.absolute())],
+                capture_output=True,
+                text=True,
+                timeout=300,  # 5 minute timeout
+                cwd=str(working_dir)
+            )
+            
+            print(f"Minigame exited with code: {result.returncode}")
+            if result.stdout:
+                print(f"Minigame stdout: {result.stdout}")
+            if result.stderr:
+                print(f"Minigame stderr: {result.stderr}")
+            
+            # Check result (minigame should exit with code 0 for win, 1 for lose)
+            if result.returncode == 0:
+                game_result = 'win'
+            else:
+                game_result = 'lose'
+                
+        except subprocess.TimeoutExpired:
+            print("Minigame timed out")
+            game_result = 'lose'
+        except Exception as e:
+            print(f"Error launching minigame: {e}")
+            import traceback
+            traceback.print_exc()
+            game_result = 'lose'
+        
+        # Return to dialog
+        self.minigame_active = False
+        if self.minigame_callback:
+            self.minigame_callback(game_result)
+            self.minigame_callback = None
+
+    
+    def create_dialog(self, character):
+        if not self.dialog_tree:
+            self.dialog_tree = DialogTree(
+                character, 
+                self.player, 
+                self.all_sprites, 
+                self.fonts['dialog'],
+                self.fonts['bold'],
+                self.end_dialog,
+                self.launch_minigame  # Pass minigame launcher
+            )
+
 
     # Transitioning to other areas
     def transition_check(self):
@@ -370,7 +486,7 @@ class Game:
         self.display_surface.blit(self.tint_surf, (0,0))
 
     
-
+    # Game loop
     def run(self):
         while True:
             dt = self.clock.tick(60) / 1000
@@ -397,6 +513,16 @@ class Game:
 
             # Drawing
             self.all_sprites.draw(self.player) # Draw sprites
+            if self.dialog_tree:
+                if self.dialog_tree.current_dialog:
+                    self.display_surface.blit(self.dialog_tree.current_dialog.image, 
+                                            self.dialog_tree.current_dialog.rect)
+                if self.dialog_tree.current_choices:
+                    self.display_surface.blit(self.dialog_tree.current_choices.image, 
+                                            self.dialog_tree.current_choices.rect)
+            # Draw blocked dialog
+            if self.blocked_dialog:
+                self.display_surface.blit(self.blocked_dialog.image, self.blocked_dialog.rect)
             title_font = self.fonts['small']
             room_font = self.fonts['regular']
 
@@ -442,9 +568,9 @@ class Game:
             if not self.paused:  # Only do transitions when not paused
                 self.tint_screen(dt)
             pygame.display.update()
-
+  
+    # How to Play menu
     def howTo(self):
-        # Resizing back icon
         back_icon = pygame.image.load('graphics/icons/back.png')
         back_icon_resize = pygame.transform.scale(back_icon, (48, 48))
 
@@ -467,7 +593,8 @@ class Game:
                     self.toggle_fullscreen()
 
             pygame.display.update()
-                
+
+    # Main Menu
     def main_menu(self):
         while True:
             self.display_surface.blit(bg, (0,0))

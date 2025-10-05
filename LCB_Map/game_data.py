@@ -1,12 +1,39 @@
 CHARACTER_DATA = {
     'Cortana': {
+        'name': 'Cortana',
         'directions': ['down'],
         'radius': 0,
         'look_around': False,
         'dialog': {
-            'default': ['Welcome to LCB!']
-        },
-        'defeated': False
+            'start': {
+                'text': 'Welcome to LCB! I\'m Cortana, how can I help you?',
+                'options': [
+                    {'text': 'What courses do you offer?', 'next': 'courses'},
+                    {'text': 'I\'m just looking around.', 'next': 'end'}
+                ]
+            },
+            'courses': {
+                'text': [
+                    'We offer Business, Computing, Culinary, and Law courses.',
+                    'The courses we provide are awarded by University of Essex, Kensington College, City & Guilds, and Pearson BTEC.'
+                ],
+                'options': [
+                    {'text': 'Tell me more?', 'next': 'courses_detail'},
+                    {'text': 'I want to ask something else.', 'next': 'start'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'courses_detail': {
+                'text': 'You may see the courses we offer by pressing TAB, or find more information on our website!',
+                'options': [
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'end': {
+                'text': 'Alright, have a great day!',
+                'options': None # none = dialog end
+            }
+        }
     },
 
     'Atticus': {
@@ -14,7 +41,54 @@ CHARACTER_DATA = {
     },
 
     'Dylan': {
-
+        'name': 'Dylan',
+        'directions': ['down'],
+        'radius': 0,
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Hey, could you help me with something?',
+                'options': [
+                    {'text': 'What\'s up?.', 'next': 'minigame'},
+                    {'text': 'I\'m busy at the moment.', 'next': 'reject'}
+                ]
+            },
+            'minigame': {
+                'text': [
+                    'I\'m finishing up some game projects for my Computer Science degree.',
+                    'Would you like to test them out for my report?'
+                ],
+                'options': [
+                    {'text': 'Sure! (Play Space Invaders)', 'next': 'launch_si'},
+                    {'text': 'Sure! (Play Breakout)', 'next': 'launch_b'},
+                    {'text': 'Maybe another time.', 'next': 'reject'},
+                ]
+            },
+            'minigame_win': {
+                'text': 'Woah, you\'re good! Thanks for testing it out.',
+                'options': [
+                    {'text': 'No problem!', 'next': 'end'},
+                ]
+            },
+            'minigame_lose':{
+                'text': [
+                    'Seems like you lost... Don\'t worry, you can try again next time.',
+                    'But hey, at least the game works.',
+                    'Thanks for playing!'
+                ],
+                'options': [
+                    {'text': 'See you.', 'next': 'end'},
+                ]
+            },
+            'reject': {
+                'text': 'I see, no worries.',
+                'options': None # none = dialog end
+            },
+            'end':{
+                'text': 'Thanks again.',
+                'options': None # none = dialog end
+            }
+        }
     },
 
     'Munaf': {
@@ -23,8 +97,7 @@ CHARACTER_DATA = {
         'look_around': False,
         'dialog': {
             'default': ['Welcome to LCB!']
-        },
-        'defeated': False
+        }
     },
 
     'Chell': {
@@ -202,7 +275,7 @@ COURSE_DATA = {
                 '- MIN. 112 UCAS POINTS (GCE A\'LEVEL)',
                 '- IB - 26 POINTS',
                 '- HNTEC Certificate',
-                '- BTEC LEVEL 3 DIPLOMA IN HOSPITALITY (OVERALL MERIT-MERIT)',
+                '- BTEC LEVEL 3 DIPLOMA IN HOSPITALITY (OVERALL MERIT)',
                 '- BTEC LEVEL 3 DIPLOMA IN TRAVEL & TOURISM'
                 ],
             'Year 2': '- BTEC LEVEL 5 HND IN HOSPITALITY MANAGEMENT / EQUIVALENT'
@@ -222,7 +295,7 @@ COURSE_DATA = {
                 '- Software Engineering Principles',
                 '- Web Development',
                 '- Professional Skills for Computing',
-                '- Mathematics for Computing'
+                '- Mathematics for Computing',
                 '- Introduction to Programming'
             ],
             'Year 2': [
@@ -230,7 +303,7 @@ COURSE_DATA = {
                 '- Advanced Databases & Warehousing',
                 '- Cybersecurity',
                 '- Further Networking',
-                '- Mobile App Programming',
+                '- Mobile Application Programming',
                 '- Team Project'
             ],
             'Year 3': [
@@ -262,7 +335,7 @@ COURSE_DATA = {
             'Year 1': [
                 '- Contract Law',
                 '- Land Law',
-                '- Foundations of Public Law'
+                '- Foundations of Public Law',
                 '- Criminal Law',
                 '- Career Management and Personal Development Skills I'
             ],
@@ -308,7 +381,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '1 Year',
         'icon': 'business',
-        'description': '',
+        'description': 'The University Foundation Course, designed by Kensington College of Business and endorsed by 17 universities, is an accredited A-Level alternative accepted for entry into various degree programs.',
         'modules': {
             '': [
                 '- Study Skills',
@@ -323,7 +396,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- 4 GCE O\'LEVEL IN ENGLISH MEDIUM SUBJECTS',
+                '- 4 GCE O\'LEVEL CREDITS IN ENGLISH MEDIUM SUBJECTS',
                 '- BDTVEC PRE-NATIONAL DIPLOMA'
             ]
         },
@@ -338,7 +411,7 @@ COURSE_DATA = {
         'field': 'computer',
         'duration': '1 Year',
         'icon': 'compsci',
-        'description': '',
+        'description': 'The Foundation in Information Technology is an accredited program that prepares students for Computing degrees worldwide by enhancing subject knowledge, English proficiency, and academic skills, with progression options in areas like AI, Big Data, and Robotics.',
         'modules': {
             '': [
                 '- Study Skills',
@@ -351,7 +424,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- 4 GCE O\'LEVEL IN ENGLISH MEDIUM SUBJECTS',
+                '- 4 GCE O\'LEVEL CREDITS IN ENGLISH MEDIUM SUBJECTS',
                 '- BDTVEC PRE-NATIONAL DIPLOMA'
             ]
         },
@@ -366,7 +439,7 @@ COURSE_DATA = {
         'field': 'law',
         'duration': '1 Year',
         'icon': 'law',
-        'description': '',
+        'description': 'The accredited Foundation in Law program, designed by Kensington College of Business and accepted by multiple universities as an A-Level alternative, prepares students with essential legal knowledge and academic skills for progression to an LLB Law degree.',
         'modules': {
             '': [
                 '- Study Skills',
@@ -379,7 +452,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- 5 GCE/IGCSE O\'LEVEL IN 4 ENGLISH MEDIUM SUBJECTS + 1 ENGLISH LANGUAGE'
+                '- 5 GCE/IGCSE O\'LEVEL CREDITS IN 4 ENGLISH MEDIUM SUBJECTS AND 1 ENGLISH LANGUAGE'
             ]
         },
         'whats_next': {
@@ -393,7 +466,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '1 Year',
         'icon': 'business',
-        'description': '',
+        'description': 'The KCB BA Common Year One offers direct entry to the second year of many degrees, allowing students to explore various subjects and identify their interests for a successful and fulfilling career path.',
         'modules': {
             '': [
                 '- Business Accounting',
@@ -413,7 +486,7 @@ COURSE_DATA = {
                 '- 2 A\'LEVEL IN ENGLISH MEDIUM SUBJECTS',
                 '- IB - 24 POINTS',
                 '- HNTEC CERTIFICATE',
-                '- BTEC LEVEL 3 DIPLOMA (OVERALL MERIT-MERIT)',
+                '- BTEC LEVEL 3 DIPLOMA (OVERALL MERIT)',
                 '- UNIVERSITY FOUNDATION COURSE / EQUIVALENT'
             ]
         },
@@ -467,7 +540,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- MIN. 2 GCE A\'LEVEL CREDITS',
+                '- MIN. 2 GCE A\'LEVELS',
                 '- IB - 24 POINTS',
                 '- MATURE STUDENTS WITH MIN. 2 YEARS OF WORK EXPERIENCE'
             ]
@@ -522,7 +595,7 @@ COURSE_DATA = {
         },
         'whats_next': {
             '': [
-                '→ Degree in Business with our University Partners in the UK (1 Year); OR',
+                '→ Degree in Business with our University Partners in the UK (1 Year)',
                 '→ Degree in Business at LCB, Brunei awarded by University of Essex, UK (2 Years)'
             ]
         }
@@ -533,7 +606,7 @@ COURSE_DATA = {
         'duration': '2 Years',
         'icon': 'plane',
         'warning': '! ONLY FOR INTERNATIONAL STUDENTS !',
-        'description': 'KCB Professional Pathway (2 Years) -- The programme allows holders of the KCB Higher Diploma to gain direct entry into the final year of a BA in Business Studies, saving time and cost while equipping students with practical knowledge for entrepreneurship or roles in established businesses.',
+        'description': 'The KCB Airline Hospitality Business programme, taught in English, prepares students with essential language, communication, and subject-specific skills to progress from high school to degree-level study in Airline Hospitality at UK universities.',
         'modules': {
             '': [
                 '- English for Academic Purposes',
@@ -542,7 +615,7 @@ COURSE_DATA = {
                 '- Airline Customer Service',
                 '- In-flight Service',
                 '- Airport Ground Service',
-                '- Interview Skills & Personal and Professional Development',
+                '- Interview Skills and Personal & Professional Development',
                 '- Introduction to Human Resource Management',
                 '- Airline Leadership',
                 '- Hospitality & Tourism Management',
@@ -558,7 +631,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- 1 GCE A\'LEVEL CREDITS / EQUIVALENT*',
+                '- 1 GCE A\'LEVELS / EQUIVALENT*',
                 '- IB - 24 POINTS',
                 '- HNTEC CERTIFICATE / EQUIVALENT',
                 '- BTEC LEVEL 3 DIPLOMA IN BUSINESS',
@@ -594,7 +667,7 @@ COURSE_DATA = {
         'duration': '2 Years',
         'icon': 'sports',
         'warning': '! ONLY FOR INTERNATIONAL STUDENTS !',
-        'description': 'KCB Professional Pathway (2 Years) -- The programme allows holders of the KCB Higher Diploma to gain direct entry into the final year of a BA in Business Studies, saving time and cost while equipping students with practical knowledge for entrepreneurship or roles in established businesses.',
+        'description': 'The Higher Diploma in Sports and Leisure at Kensington College of Business Brunei prepares students for global careers through internships and training in essential sports skills, aiming to meet the needs of international sports and leisure organisations.',
         'modules': {
             '': [
                 '- English for Academic Purposes',
@@ -618,7 +691,7 @@ COURSE_DATA = {
         },
         'entry_requirements': {
             '': [
-                '- 1 GCE A\'LEVEL CREDITS / EQUIVALENT*',
+                '- 1 GCE A\'LEVEL / EQUIVALENT*',
                 '- IB - 24 POINTS',
                 '- HNTEC CERTIFICATE / EQUIVALENT',
                 '- BTEC LEVEL 3 DIPLOMA IN BUSINESS',
@@ -646,7 +719,7 @@ COURSE_DATA = {
     
 
     # CITY & GUILDS
-    'Level 2 Diploma in Culinary Arts':{
+    'Level 2 Diploma in Food Preparation & Culinary Arts':{
         'partner': 'City & Guilds',
         'field': 'culinary',
         'duration': '1 Year',
@@ -663,6 +736,7 @@ COURSE_DATA = {
                 '- Food Safety',
                 '- Meet Guest Requirements Through Menu Planning',
                 '- Mise en Place',
+                '- Cooking Methods, Techniques, and Commodities: Boiling, Poaching, and Steaming',
                 '- Cooking Methods, Techniques, and Commodities: Stewing and Braising',
                 '- Cooking Methods, Techniques, and Commodities: Baking, Roasting, and Grilling',
                 '- Cooking Methods, Techniques, and Commodities: Deep and Shallow Frying',
@@ -677,7 +751,7 @@ COURSE_DATA = {
         },
         'whats_next': {
             '': [
-                '→ City & Guilds Level 3 Advanced Diploma in Culinary Arts',
+                '→ City & Guilds Level 3 Advanced Diploma in Culinary Arts & Supervision',
                 '→ BA (Hons) in Culinary Arts awarded by Culinary Arts Academy Switzerland and University of Derby, UK (in Switzerland)'
             ]
         }
@@ -699,6 +773,7 @@ COURSE_DATA = {
                 '- Food Safety',
                 '- Meet Guest Requirements Through Menu Planning',
                 '- Mise en Place',
+                '- Prepare, Cook, and Finish Cakes, Biscuits, and Sponge Products Using Standardised Recipes',
                 '- Prepare, Cook, and Finish Dough Products Using Standardised Recipes',
                 '- Prepare, Cook, and Finish Hot Desserts Using Standardised Recipes',
                 '- Prepare, Cook, and Finish Cold Desserts Using Standardised Recipes',
@@ -785,7 +860,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '1 Year',
         'icon': 'business',
-        'description': '',
+        'description': 'The course spans two semesters with six modules—three per semester—focusing on fundamental business concepts and soft skills, assessed through both practical and written methods.',
         'modules': {
             '': [
                 '- Business Purposes',
@@ -818,7 +893,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '1.5 Years',
         'icon': 'business',
-        'description': '',
+        'description': 'The BTEC National Diploma in Business is an internationally recognised, vocational qualification that prepares students for undergraduate study and equips them with practical skills in marketing, management, and finance.',
         'modules': {
             '': [
                 '- Exploring Business',
@@ -852,7 +927,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '2 Years',
         'icon': 'accounting',
-        'description': '',
+        'description': 'The two-year BTEC Higher National Diploma in Business combines academic theory with practical application, offering pathways in accounting or marketing in the second year, and can serve as a standalone qualification or lead to direct entry into the second year of a university degree.',
         'modules': {
             'Level 4': [
                 '- Business & the Business Environment',
@@ -901,7 +976,7 @@ COURSE_DATA = {
         'field': 'business',
         'duration': '2 Years',
         'icon': 'marketing',
-        'description': '',
+        'description': 'The two-year BTEC Higher National Diploma in Business combines academic theory with practical application, offering pathways in accounting or marketing in the second year, and can serve as a standalone qualification or lead to direct entry into the second year of a university degree.',
         'modules': {
             'Level 4': [
                 '- Business & the Business Environment',
@@ -950,7 +1025,7 @@ COURSE_DATA = {
         'field': 'computer',
         'duration': '1 Year',
         'icon': 'it',
-        'description': '',
+        'description': 'The Pearson BTEC International Level 2 in Information Technology offers a broad introduction to areas like programming, digital design, and networking, while also developing transferable skills for further education or employment.',
         'modules': {
             '': [
                 '- Using IT to Support Information and Communication in Organisations',
@@ -984,7 +1059,7 @@ COURSE_DATA = {
         'field': 'computer',
         'duration': '1.5 Years',
         'icon': 'it',
-        'description': '',
+        'description': 'The Level 3 BTEC Diploma in IT is an internationally recognised qualification that combines practical and theoretical learning, preparing students for IT careers through industry-relevant modules and workplace-based assignments.',
         'modules': {
             '': [
                 '- Information Technology Systems',
@@ -1016,12 +1091,12 @@ COURSE_DATA = {
             ]
         }
     },
-    'Level 5 HND in Computing (Application Development & Testing)':{
+    'Level 5 HND in Computing (App Development & Testing)':{
         'partner': 'Pearson BTEC',
         'field': 'computer',
         'duration': '2 Years',
         'icon': 'appdev',
-        'description': '',
+        'description': 'The BTEC Higher National qualification in Computing provides Level 4 and 5 technical education, equipping students with broad, up-to-date knowledge in areas like software engineering and application development, and preparing them for IT careers or further study.',
         'modules': {
             '': [
                 '- Programming',
@@ -1068,7 +1143,7 @@ COURSE_DATA = {
         'field': 'computer',
         'duration': '2 Years',
         'icon': 'softeng',
-        'description': '',
+        'description': 'The BTEC Higher National qualification in Computing provides Level 4 and 5 technical education, equipping students with broad, up-to-date knowledge in areas like software engineering and application development, and preparing them for IT careers or further study.',
         'modules': {
             '': [
                 '- Programming',
@@ -1110,4 +1185,153 @@ COURSE_DATA = {
             ]
         }
     },
+    'Level 2 Certificate in Travel & Tourism':{
+        'partner': 'Pearson BTEC',
+        'field': 'tourism',
+        'duration': '1 Year',
+        'icon': 'plane',
+        'description': 'The Pearson BTEC International Level 2 in Travel and Tourism prepares learners for careers in the industry through units in customer service, travel planning, tour guiding, and hospitality, while also developing transferable skills for further education or employment.',
+        'modules': {
+            '': [
+                '- The Travel and Toruism Industry',
+                '- Customer Service in Travel and Tourism Organisations',
+                '- Travel Planning',
+                '- Exploring Marketing in Travel and Tourism',
+                '- Development of the Travel and Tourism Industry',
+                '- Your Country as a Tourist Destination',
+                '- Working as a Tour Guide',
+                '- Hospitality in the Travel and Tourism Industry'
+            ]
+        },
+        'entry_requirements': {
+            '': [
+                '- MIN. 4 GCE O\'LEVEL PASSES IN ENGLISH MEDIUM SUBJECTS or 2 MALAY AND 2 ENGLISH MEDIUM SUBJECTS',
+                '- BTEC LEVEL 2 EXTENDED CERTIFICATE',
+                '- BDTVEC SKILL CERTIFICATE 2'
+            ]
+        },
+        'whats_next': {
+            '': [
+                '→ BTEC Level 3 Diploma in Travel & Tourism',
+                '→ BTEC Level 3 Diploma in Hospitality',
+                '→ BTEC Level 3 Diploma in Business',
+                '→ BTEC Level 3 Diploma in Information Technology'
+            ]
+        }
+    },
+    'Level 3 Diploma in Travel & Tourism':{
+        'partner': 'Pearson BTEC',
+        'field': 'tourism',
+        'duration': '1.5 Years',
+        'icon': 'plane',
+        'description': 'The Pearson BTEC International Level 3 in Travel and Tourism prepares learners for higher education or entry-level roles in the sector, with industry-informed content designed to support progression within leisure, travel, and tourism careers.',
+        'modules': {
+            '': [
+                '- The Travel and Tourism Industry',
+                '- Worldwide Travel and Tourism Destination',
+                '- Marketing Travel and Tourism to Domestic and International Customers',
+                '- Customer Service in Travel & Tourism',
+                '- Travel and Tourism Enterprises',
+                '- Specialist Tourism',
+                '- Sustainable Tourism',
+                '- Events, Conferences, and Exhibitions for the Travel and Tourism Industry',
+                '- Recruitment and Selection in Travel and Tourism'
+            ]
+        },
+        'entry_requirements': {
+            '': [
+                '- MIN. 4 GCE O\'LEVEL CREDITS IN ENGLISH MEDIUM SUBJECTS or 2 MALAY AND 2 ENGLISH MEDIUM SUBJECTS',
+                '- BTEC LEVEL 2 EXTENDED CERTIFICATE',
+                '- BDTVEC SKILL CERTIFICATE 2'
+            ]
+        },
+        'whats_next': {
+            '': [
+                '→ BTEC HND in Hospitality Management',
+                '→ BA (Hons) International Tourism Management'
+            ]
+        }
+    },
+    'Level 3 Diploma in Hospitality':{
+        'partner': 'Pearson BTEC',
+        'field': 'tourism',
+        'duration': '1.5 Years',
+        'icon': 'hospitality',
+        'description': 'The BTEC Level 3 Diploma in Hospitality is a vocational qualification that equips students with practical skills and theoretical knowledge for entry into the hospitality industry or progression to higher education.',
+        'modules': {
+            '': [
+                '- The Hospitality Industry',
+                '- Customer Service Provision in Hospitality',
+                '- Contemporary Global Cuisine',
+                '- Marketing for Hospitality',
+                '- Environment and Sustainability in the Hospitality Industry',
+                '- Events in Hospitality',
+                '- Recruitment and Selection in Hospitality',
+                '- Supervise Food and Beverage Service',
+                '- The Principles of Leadership and Supervision',
+                '- Hospitality Business Enterprise',
+                '- Cost Control for Hospitality Supervisors',
+                '- Accomodation Operations'
+            ]
+        },
+        'entry_requirements': {
+            '': [
+                '- 4 GCE O\'LEVEL CREDITS IN ENGLISH MEDIUM SUBJECTS or 2 MALAY AND 2 ENGLISH MEDIUM SUBJECTS',
+                '- BTEC LEVEL 2 CERTIFICATE',
+                '- BDTVEC PRE-NATIONAL DIPLOMA',
+                '- NTEC DIPLOMA / EQUIVALENT'
+            ]
+        },
+        'whats_next': {
+            '': [
+                '→ BTEC HND in Hospitality Management',
+                '→ BA (Hons) International Tourism Management'
+            ]
+        }
+    },
+    'Level HND in Hospitality Management':{
+        'partner': 'Pearson BTEC',
+        'field': 'tourism',
+        'duration': '2 Years',
+        'icon': 'hospitality',
+        'description': 'The two-year Higher National Diploma in Hospitality focuses on management aspects of the industry—such as hotels, restaurants, and events—adapting core business concepts like marketing, management, and finance for a hospitality context, and is suitable for both experienced and new students.',
+        'modules': {
+            'Level 4': [
+                '- The Contemporary Hospitality Industry',
+                '- Managing the Customer Experience',
+                '- Professional Identity and Practice',
+                '- The Hospitality Business Toolkit',
+                '- Leadership and Management for Service Industries',
+                '- Managing Food and Beverage Operations',
+                '- Managing Accomodation Services',
+                '- Hospitality Marketing Essentials'
+            ],
+            'Level 5': [
+                '- Research Project',
+                '- Hospitality Consumer Behaviours and Insight',
+                '- Menu Development, Planning, and Design',
+                '- Revenue Management',
+                '- Organisational Behaviour',
+                '- Managing and Planning an Event'
+            ]
+        },
+        'entry_requirements': {
+            '': [
+                '- 1 GCE A\'LEVEL + 4 GCE O\'LEVEL CREDITS*',
+                '- HNTEC CERTIFICATE / EQUIVALENT',
+                '- BTEC LEVEL 3 DIPLOMA IN HOSPITALITY',
+                '- UNIVERSITY FOUNDATION COURSE'
+            ]
+        },
+        'whats_next': {
+            '': [
+                '→ BSc (Hons) International Tourism Management'
+            ]
+        },
+        'notes': {
+            '': [
+                '* GCE O\'Level in English or IELTS score of 5.5 can also be considered with this qualification.'
+            ]
+        }
+    }
 }

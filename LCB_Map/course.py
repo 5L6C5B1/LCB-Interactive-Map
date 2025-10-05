@@ -20,12 +20,12 @@ class Course:
         self.satisfaction_rating = choice([4.2, 4.5, 4.3, 4.7, 4.1, 4.4])
     
     def get_modules_list(self):
-        """Return all modules as a flat list for easier display"""
+        # Return all modules as a list
         all_modules = []
         for year, modules in self.modules.items():
             all_modules.extend([f"{year}: {module}" for module in modules])
         return all_modules
     
     def get_requirements_list(self):
-        """Return entry requirements as a list"""
+        # Return entry requirements as a list
         return [f"{key}: {value}" for key, value in self.entry_requirements.items()]

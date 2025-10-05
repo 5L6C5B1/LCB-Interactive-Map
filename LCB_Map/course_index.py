@@ -24,7 +24,7 @@ class CourseIndex:
         
         # FRAMES 
         self.ui_frames = ui_frames
-        self.icon_frames = icon_frames  # Add this line
+        self.icon_frames = icon_frames
         
         # TINT SURFACE
         self.tint_surf = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -56,7 +56,7 @@ class CourseIndex:
         keys = pygame.key.get_just_pressed()
         
         # Handle view switching
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] or keys[pygame.K_KP_ENTER] or keys[pygame.K_RETURN]:
             if self.current_view == 'partners':
                 partner_names = list(self.university_partners.keys())
                 if partner_names and self.index < len(partner_names):
@@ -74,8 +74,6 @@ class CourseIndex:
                 self.index = 0
                 self.scroll_y = 0
         
-        # Navigation - use get_pressed() instead of get_just_pressed()
-        # but add manual debouncing
         current_time = pygame.time.get_ticks()
         if not hasattr(self, 'last_key_time'):
             self.last_key_time = 0
@@ -102,13 +100,13 @@ class CourseIndex:
 
 
     def handle_scroll(self, scroll_direction):
-        """Handle mouse wheel scrolling in the details section"""
+        # Mouse wheel scrolling in the details section
         if self.current_view == 'courses' and self.current_items:
             self.scroll_y += scroll_direction * 30
             self.scroll_y = max(0, min(self.scroll_y, self.max_scroll))
 
     def wrap_text(self, text, font, max_width):
-        """Wrap text to fit within max_width"""
+        # Wrap text to fit within max_width
         words = text.split(' ')
         lines = []
         current_line = []
@@ -122,7 +120,7 @@ class CourseIndex:
                     lines.append(' '.join(current_line))
                     current_line = [word]
                 else:
-                    # Word is too long, break it
+                    # Word too long? break it
                     lines.append(word)
         
         if current_line:
@@ -141,7 +139,7 @@ class CourseIndex:
         v_offset = 0 if self.index < self.visible_items else -(self.index - self.visible_items + 1) * self.item_height
         
         for idx, (name, data) in enumerate(items_list):
-            # COLOURS
+            # Colours
             bg_color = COLORS['gray'] if self.index != idx else COLORS['light']
             text_color = COLORS['white'] if self.index != idx else COLORS['black']
             
@@ -149,7 +147,7 @@ class CourseIndex:
             item_rect = pygame.FRect(self.main_rect.left, top, self.list_width, self.item_height)
 
             if item_rect.colliderect(self.main_rect):
-                # CHECK CORNERS
+                # Corners
                 if item_rect.collidepoint(self.main_rect.topleft):
                     pygame.draw.rect(self.display_surface, bg_color, item_rect, 0, 0, 12)
                 elif item_rect.collidepoint(self.main_rect.bottomleft + vector(1,-1)):
@@ -176,18 +174,22 @@ class CourseIndex:
 
                 # Display actual icon image
                 icon_name = data.get('icon', None)
-                print(f"Looking for icon: {icon_name}")  # DEBUG
+                print(f"Looking for icon: {icon_name}")  # debug
+
                 if icon_name:
                     icon_surf = self.icon_frames.get(icon_name)
-                    print(f"Icon surface found: {icon_surf is not None}")  # DEBUG
+                    print(f"Icon surface found: {icon_surf is not None}")  # debug
+
                     if icon_surf:
                         # Scale icon to fit (optional, adjust size as needed)
                         icon_surf = pygame.transform.scale(icon_surf, (50, 50))
                         icon_rect = icon_surf.get_frect(center = (item_rect.left + 45, item_rect.centery))
                         self.display_surface.blit(icon_surf, icon_rect)
                     else:
-                        print(f"Icon '{icon_name}' not found in icon_frames")  # DEBUG
-                        print(f"Available icons: {list(self.icon_frames.keys())}")  # DEBUG
+                        print(f"Icon '{icon_name}' not found in icon_frames")  # debug
+    
+                        print(f"Available icons: {list(self.icon_frames.keys())}")  # debug
+    
                         # Fallback placeholder if icon not found
                         icon_rect = pygame.FRect(item_rect.left + 20, item_rect.centery - 25, 50, 50)
                         pygame.draw.rect(self.display_surface, COLORS['gray'], icon_rect, 0, 4)
@@ -196,7 +198,7 @@ class CourseIndex:
                     icon_rect = pygame.FRect(item_rect.left + 20, item_rect.centery - 25, 50, 50)
                     pygame.draw.rect(self.display_surface, COLORS['gray'], icon_rect, 0, 4)
         
-        # LINES
+        # Lines
         for i in range(1, min(self.visible_items, len(self.current_items))):
             y = self.main_rect.top + self.item_height * i
             left = self.main_rect.left
@@ -224,11 +226,11 @@ class CourseIndex:
 
     # Display initial screen
     def display_partner_details(self, rect, name, data):
-        # PARTNER DISPLAY (top header area)
+        # Partner display
         top_rect = pygame.FRect(rect.topleft, (rect.width, rect.height * 0.3))
         pygame.draw.rect(self.display_surface, COLORS['white'], top_rect, 0, 0, 0, 12)
 
-        # BANNER IMAGE (if available)
+        # Banner image (if available)
         icon_name = data.get('banner', None)
         if icon_name:
             banner_surf = self.icon_frames.get(icon_name)
@@ -238,12 +240,11 @@ class CourseIndex:
                 aspect_ratio = original_height / original_width
 
                 max_width = top_rect.width * 0.8
-                max_height = top_rect.height * 0.6  # Reserve some space
+                max_height = top_rect.height * 0.6
 
                 new_width = max_width
                 new_height = new_width * aspect_ratio
 
-                # Scale down if too tall
                 if new_height > max_height:
                     new_height = max_height
                     new_width = new_height / aspect_ratio
@@ -264,7 +265,7 @@ class CourseIndex:
             name_rect = name_surf.get_frect(midtop=(top_rect.centerx, top_rect.top + 10))
             self.display_surface.blit(name_surf, name_rect)
 
-        # DESCRIPTION RECT BELOW TOP SECTION
+        # Description rect below top details
         desc_rect = pygame.FRect(
             rect.left + 10,
             top_rect.bottom + 20,
@@ -284,7 +285,7 @@ class CourseIndex:
             self.display_surface.blit(text_surf, text_rect)
             y_offset += 25
 
-        # PROGRAMS INFO
+        # Paragraph 2 info (programs)
         if y_offset + 50 < desc_rect.height:
             y_offset += 30
             wrapped_programs = self.wrap_text(data['programs'], self.fonts['regular'], desc_rect.width)
@@ -304,16 +305,16 @@ class CourseIndex:
         content_height = self.calculate_content_height(name, data, rect.width - 20)
         self.max_scroll = max(0, content_height - rect.height + 40)
         
-        # COURSE TITLE SECTION
+        # Course title
         top_rect = pygame.FRect(rect.topleft, (rect.width, rect.height * 0.25))
 
         # Get field color or default to blue
         field = data.get('field', 'default')
-        title_color = self.field_colors.get(field, COLORS['blue'])
+        title_color = self.field_colors.get(field, COLORS['navy'])
 
         pygame.draw.rect(self.display_surface, title_color, top_rect, 0, 0, 0, 12)
 
-        # COURSE NAME
+        # Course name
         course_lines = self.wrap_text(name, self.fonts['bold'], top_rect.width - 20)
         y_pos = 10
         for line in course_lines[:2]:  # Limit to 2 lines for title
@@ -322,12 +323,12 @@ class CourseIndex:
             self.display_surface.blit(name_surf, name_rect)
             y_pos += 25
 
-        # DURATION
+        # Course duration
         duration_surf = self.fonts['regular'].render(data['duration'], False, COLORS['white'])
         duration_rect = duration_surf.get_frect(topleft = top_rect.topleft + vector(10, y_pos))
         self.display_surface.blit(duration_surf, duration_rect)
 
-        # SCROLLABLE CONTENT AREA
+        # Scrollable contents
         content_rect = pygame.FRect(rect.left + 10, top_rect.bottom + 10, rect.width - 20, rect.height - top_rect.height - 20)
         
         # Calculate max scroll based on actual content height
@@ -339,7 +340,7 @@ class CourseIndex:
         
         y_offset = -self.scroll_y
 
-        # WARNING
+        # Warning
         if 'warning' in data and data['warning']:
             warning_lines = self.wrap_text(data['warning'], self.fonts['regular'], content_rect.width)
             for line in warning_lines:
@@ -350,9 +351,9 @@ class CourseIndex:
                     warning_rect = warning_surf.get_frect(topleft = content_rect.topleft + vector(0, y_offset))
                     self.display_surface.blit(warning_surf, warning_rect)
                 y_offset += 22
-            y_offset += 10  # Add space after warning
+            y_offset += 10
         
-        # DESCRIPTION
+        # Description
         desc_lines = self.wrap_text(data['description'], self.fonts['regular'], content_rect.width)
         for line in desc_lines:
             if y_offset > content_rect.height:
@@ -363,7 +364,7 @@ class CourseIndex:
                 self.display_surface.blit(text_surf, text_rect)
             y_offset += 22
 
-        # MODULES SECTION
+        # Modules
         y_offset += 20
         if y_offset > -30 and y_offset < content_rect.height:
             modules_title = self.fonts['bold'].render('Modules', False, COLORS['white'])
@@ -394,7 +395,7 @@ class CourseIndex:
                     y_offset += 18
             y_offset += 10
 
-        # ENTRY REQUIREMENTS SECTION
+        # EEntry reqs
         y_offset += 20
         if y_offset > -30 and y_offset < content_rect.height:
             req_title = self.fonts['bold'].render('Entry Requirements', False, COLORS['white'])
@@ -432,7 +433,7 @@ class CourseIndex:
             
             y_offset += 7  # Additional gap after each year group
 
-        # NOTES
+        # Notes
         if 'notes' in data and data['notes']:
             y_offset += 20
             if y_offset > -30 and y_offset < content_rect.height:
@@ -462,7 +463,7 @@ class CourseIndex:
                 
                 y_offset += 7
 
-        # WHATS NEXT
+        # Whats next
         if 'whats_next' in data and data['whats_next']:
             y_offset += 20
             if y_offset > -30 and y_offset < content_rect.height:
@@ -525,7 +526,7 @@ class CourseIndex:
                 height += len(module_lines) * 18
             height += 10  # Space after year
 
-        # Entry Requirements
+        # Entry Reqs
         height += 55  # Title + space
         for year, requirements in data['entry_requirements'].items():
             if year.strip():
