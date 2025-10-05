@@ -190,9 +190,9 @@
  <objectgroup id="5" name="Entities">
   <object id="2" name="Character" x="863.545" y="4130.45">
    <properties>
-    <property name="character_id" value="Valentyn"/>
+    <property name="character_id" value="Munaf"/>
     <property name="direction" value="left"/>
-    <property name="graphic" value="valya"/>
+    <property name="graphic" value="munaf"/>
     <property name="radius" value="0"/>
    </properties>
    <point/>

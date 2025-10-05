@@ -16,6 +16,9 @@
  <tileset firstgid="4108" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
   <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
  </tileset>
+ <tileset firstgid="5115" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
  <layer id="1" name="Floor" width="35" height="32">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,11,1308,1308,62,1318,1318,1318,1318,1318,1318,1318,1318,1318,1318,1318,1318,1318,1318,12,0,0,0,0,0,0,

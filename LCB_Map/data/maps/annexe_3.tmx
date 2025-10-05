@@ -53,7 +53,7 @@
   <object id="2" name="Player" x="768" y="414">
    <properties>
     <property name="direction" value="left"/>
-    <property name="pos" value="annee_3_theroof"/>
+    <property name="pos" value="annexe_3_theroof"/>
    </properties>
    <point/>
   </object>
@@ -88,7 +88,7 @@
   <object id="19" x="857" y="319.5" width="5.25" height="164">
    <properties>
     <property name="pos" value="annexe_3"/>
-    <property name="target" value="annexe_3_eventhall"/>
+    <property name="target" value="annexe_3_theroof"/>
    </properties>
   </object>
  </objectgroup>
