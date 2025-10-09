@@ -135,6 +135,18 @@ class Game:
 
         # Transitions
         for obj in tmx_map.get_layer_by_name('Transition'):
+            #debug for transition errors
+            # print(f"Transition object at ({obj.x}, {obj.y})")
+            # print(f"  Available properties: {list(obj.properties.keys())}")
+            # print(f"  Object name: {getattr(obj, 'name', 'unnamed')}")
+            
+            # if 'target' not in obj.properties:
+            #     print(f"  ERROR: Missing 'target' property!")
+            #     continue
+            
+            # if 'pos' not in obj.properties:
+            #     print(f"  ERROR: Missing 'pos' property!")
+            #     continue
             TransitionSprite((obj.x, obj.y), (obj.width, obj.height), (obj.properties['target'], obj.properties['pos']), self.transition_sprites)
 
         self.blocked_sprites.empty()
@@ -152,24 +164,27 @@ class Game:
                 elif 'fire_exit' in obj.properties and obj.properties['fire_exit']:
                     message_type = 'fire_exit'
                     message_text = obj.properties['fire_exit']
-                elif 'dep_office' in obj.properties and obj.properties['dep_office']:
-                    message_type = 'dep_office'
-                    message_text = obj.properties['dep_office']
                 elif 'office' in obj.properties and obj.properties['office']:
                     message_type = 'office'
                     message_text = obj.properties['office']
-                elif 'fem_restroom' in obj.properties and obj.properties['fem_restroom']:
-                    message_type = 'fem_restroom'
-                    message_text = obj.properties['fem_restroom']
-                elif 'male_restroom' in obj.properties and obj.properties['male_restroom']:
-                    message_type = 'male_restroom'
-                    message_text = obj.properties['male_restroom']
+                elif 'restroom' in obj.properties and obj.properties['restroom']:
+                    message_type = 'restroom'
+                    message_text = obj.properties['restroom']
                 elif 'stairs' in obj.properties and obj.properties['stairs']:
                     message_type = 'stairs'
                     message_text = obj.properties['stairs']
                 elif 'store' in obj.properties and obj.properties['store']:
                     message_type = 'store'
                     message_text = obj.properties['store']
+                elif 'basement' in obj.properties and obj.properties['basement']:
+                    message_type = 'basement'
+                    message_text = obj.properties['basement']
+                elif 'kitchen' in obj.properties and obj.properties['kitchen']:
+                    message_type = 'kitchen'
+                    message_text = obj.properties['kitchen']
+                elif 'surau' in obj.properties and obj.properties['surau']:
+                    message_type = 'surau'
+                    message_text = obj.properties['surau']
                 
                 # print(f"Creating blocked sprite with message: {message_text}") # Debug
                 BlockedSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), 
@@ -211,18 +226,17 @@ class Game:
         
         # Course index input (when index is open, handle its navigation)
         if self.index_open:
-            # Pass input to course index for navigation
             self.course_index.input()
             
-            # Close course index with Z or TAB
-            if keys[pygame.K_z] or keys[pygame.K_TAB]:
+            # Close course index with X or TAB
+            if keys[pygame.K_x] or keys[pygame.K_TAB]:
                 self.index_open = False
                 self.player.blocked = False
             return
 
         # If not paused, able to interact with NPC for dialog
         if not self.paused and not self.dialog_tree:
-            if keys[pygame.K_SPACE]:
+            if keys[pygame.K_SPACE] or keys[pygame.K_e] or keys[pygame.K_z]:
                 for character in self.character_sprites:
                     if check_connection(100, self.player, character):
                         self.player.block() # BLOCK PLAYER INPUT
@@ -230,7 +244,7 @@ class Game:
                         self.create_dialog(character) # CREATE DIALOG
                         character.can_rotate = False
 
-            if keys[pygame.K_z] or keys[pygame.K_TAB]:
+            if keys[pygame.K_x] or keys[pygame.K_TAB]:
                 self.index_open = not self.index_open
                 self.player.blocked = not self.player.blocked
 
@@ -332,7 +346,7 @@ class Game:
         if not self.blocked_dialog:  # Only check if no dialog is currently showing
             for blocked_sprite in self.blocked_sprites:
                 if self.player.hitbox.colliderect(blocked_sprite.rect):
-                    print(f"Player collided with blocked sprite: {blocked_sprite.message_text}")  # Debug
+                    # print(f"Player collided with blocked sprite: {blocked_sprite.message_text}")  # Debug
                     self.show_blocked_dialog(blocked_sprite.message_text)
                     break
 
@@ -458,7 +472,8 @@ class Game:
                 self.fonts['dialog'],
                 self.fonts['bold'],
                 self.end_dialog,
-                self.launch_minigame  # Pass minigame launcher
+                self.launch_minigame,  # minigame launcher
+                self.fonts['small']
             )
 
 
@@ -515,14 +530,18 @@ class Game:
             self.all_sprites.draw(self.player) # Draw sprites
             if self.dialog_tree:
                 if self.dialog_tree.current_dialog:
-                    self.display_surface.blit(self.dialog_tree.current_dialog.image, 
-                                            self.dialog_tree.current_dialog.rect)
+                    self.display_surface.blit(self.dialog_tree.current_dialog.image, self.dialog_tree.current_dialog.rect)
+                    if hasattr(self.dialog_tree.current_dialog, 'hint_text'):
+                        self.display_surface.blit(self.dialog_tree.current_dialog.hint_text, self.dialog_tree.current_dialog.hint_rect)
                 if self.dialog_tree.current_choices:
-                    self.display_surface.blit(self.dialog_tree.current_choices.image, 
-                                            self.dialog_tree.current_choices.rect)
+                    self.display_surface.blit(self.dialog_tree.current_choices.image, self.dialog_tree.current_choices.rect)
+
             # Draw blocked dialog
             if self.blocked_dialog:
                 self.display_surface.blit(self.blocked_dialog.image, self.blocked_dialog.rect)
+                # Draw hint text for blocked dialog
+                if hasattr(self.blocked_dialog, 'hint_text'):
+                    self.display_surface.blit(self.blocked_dialog.hint_text, self.blocked_dialog.hint_rect)
             title_font = self.fonts['small']
             room_font = self.fonts['regular']
 

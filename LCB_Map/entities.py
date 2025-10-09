@@ -140,7 +140,7 @@ class Player(Entity):
         if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
             self.speed = 600
         else:
-            self.speed = 250
+            self.speed = 300
 
         self.direction = input_vector.normalize() if input_vector else input_vector
 

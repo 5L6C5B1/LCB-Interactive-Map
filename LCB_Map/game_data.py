@@ -1,14 +1,17 @@
 CHARACTER_DATA = {
+    # receptionist
     'Cortana': {
         'name': 'Cortana',
-        'directions': ['down'],
-        'radius': 0,
-        'look_around': False,
+        'directions': ['left'],
+        'look_around': True,
         'dialog': {
             'start': {
                 'text': 'Welcome to LCB! I\'m Cortana, how can I help you?',
                 'options': [
                     {'text': 'What courses do you offer?', 'next': 'courses'},
+                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
+                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Is there a dormitory?', 'next': 'dorm'},
                     {'text': 'I\'m just looking around.', 'next': 'end'}
                 ]
             },
@@ -19,13 +22,63 @@ CHARACTER_DATA = {
                 ],
                 'options': [
                     {'text': 'Tell me more?', 'next': 'courses_detail'},
-                    {'text': 'I want to ask something else.', 'next': 'start'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
                     {'text': 'Thank you.', 'next': 'end'},
                 ]
             },
-            'courses_detail': {
-                'text': 'You may see the courses we offer by pressing TAB, or find more information on our website!',
+            'questions':{
+                'text': 'Sure, what would you like to know?',
                 'options': [
+                    {'text': 'What courses do you offer?', 'next': 'courses_detail'},
+                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
+                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Nevermind.', 'next': 'end'},
+                ]
+            },
+            'courses_detail': {
+                'text': 'You may see the courses we offer by pressing TAB or X, or find more information on our website!',
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'study_mode': {
+                'text': [
+                    'Yes! We offer both full-time and evening classes for those who work part-time.',
+                    'However, not all courses offer evening classes.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'fees': {
+                'text': [
+                    'Our fees vary upon the course you\'re interested in.'
+                ],
+                'options': [
+                    {'text': 'Where do I make payments for deposits/fees?', 'next': 'payment'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'payment': {
+                'text': [
+                    'Our finance department is located up at the rooftop level.',
+                    'Feel free to inquire the receptionist there when you visit our college in person.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'dorm': {
+                'text': [
+                    'We do have a dormitory on Jalan Laksamana Abdul Razak, next to the traffic light.',
+                    'For more details, you can check our website under Student Life, then Accomodation.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
                     {'text': 'Thank you.', 'next': 'end'},
                 ]
             },
@@ -35,11 +88,352 @@ CHARACTER_DATA = {
             }
         }
     },
-
-    'Atticus': {
-
+    # librarian
+    'Cortana_lib': {
+        'name': 'Cortana',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Welcome to the library! Remember to keep your voice down.',
+                'options': [
+                    {'text': 'What are those books on the tables?', 'next': 'booksale'},
+                    {'text': 'What are the individual rooms for?', 'next': 'individual'},
+                    {'text': 'Where are the tutorial rooms?', 'next': 'tutorial'},
+                    {'text': 'May I use the Computer Lab?', 'next': 'lab5'},
+                    {'text': 'I\'m just looking around.', 'next': 'end'}
+                ]
+            },
+            'booksale': {
+                'text': [
+                    'We\'re selling some used books for a good price.',
+                    'They might come in handy for your studies.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'questions':{
+                'text': 'Sure, what would you like to know?',
+                'options': [
+                    {'text': 'What are those books on the tables?', 'next': 'booksale'},
+                    {'text': 'What are the individual rooms for?', 'next': 'individual'},
+                    {'text': 'Where are the tutorial rooms?', 'next': 'tutorial'},
+                    {'text': 'May I use the Computer/Mac Lab?', 'next': 'lab5'},
+                    {'text': 'Nevermind.', 'next': 'end'}
+                ]
+            },
+            'individual': {
+                'text': [
+                    'The individual rooms are for those who want to study privately on their own.',
+                    'You may use them for up to one hour, but you are allowed to extend it by asking the librarian.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'tutorial': {
+                'text': [
+                    'The tutorial rooms are just across from here.',
+                    'You may use those rooms for group studies, but there are also some classes who require that room.',
+                    'Be sure to ask the librarian if you plan on using them.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'lab5': {
+                'text': [
+                    'As long as you\'re a Computing degree student, of course.',
+                    'Otherwise, you may only use the ones around here.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'end': {
+                'text': 'Alright, see you soon.',
+                'options': None # none = dialog end
+            }
+        }
     },
 
+    # guide
+    'Atticus': {
+        'name': 'Atticus',
+        'directions': ['down', 'left', 'right'],
+        'look_around': True,
+        'dialog': {
+            'start': {
+                'text': 'Welcome to LCB, do you need any assistance?',
+                'options': [
+                    {'text': 'What are the rooms on this level?', 'next': 'rooms'},
+                    {'text': 'Who are you?', 'next': 'who'},
+                    {'text': 'No, thank you.', 'next': 'end'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'To my left, there\'s Computer Lab 4 and the escalator going down to Level 2.',
+                    'On my right is a hallway leading to Lecture Halls 1 and 2, along with Lecture Rooms 1, 2, and 3.',
+                    'In between Lecture Room 2 and 3, you can access our Surau if you\'d like to pray.',
+                    'There are more rooms down the path across from us.'
+                ],
+                'options': [
+                    {'text': 'Thank you.', 'next': 'end'}
+                ]
+            },
+            'who': {
+                'text': [
+                    'My name is Atticus, I\'m part of the student council.',
+                    'I\'m here to guide, so if you happen to be lost or unsure just talk to me.',
+                    'Or if you just want to talk, I don\'t mind.'
+                ],
+                'options': [
+                    {'text': 'Thank you.', 'next': 'end'},
+                    {'text': 'Student council?', 'next': 'sc'},
+                ]
+            },
+            'sc':{
+                'text': [
+                    'Yup. Student council. We host and manage events, as well as volunteer for other events if we\'re needed.',
+                    'You can talk to our student council president, Munaf, up at the rooftop level if you have more questions.'
+                ],
+                'options': [
+                    {'text': 'I see, thank you.', 'next': 'end'}
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # annexe level 2
+    'Atticus_a2': {
+        'name': 'Atticus',
+        'directions': ['left'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Hey, it\'s you. Welcome to the Annexe building.',
+                'options': [
+                    {'text': 'What rooms are around here?', 'next': 'rooms'},
+                    {'text': 'You too.', 'next': None}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'Lecture Halls 10, 11, and 12. There\'s also the Auditorium right across from us.',
+                    'The stairs lead to either Level 1 or 3, and the elevator is just to my right by the lounge.'
+                ],
+                'options': [
+                    {'text': 'Thanks bro.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # annexe level 3
+    'Atticus_a3': {
+        'name': 'Atticus',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Hey, bro.',
+                'options': [
+                    {'text': 'Just one room?', 'next': 'rooms'},
+                    {'text': 'Hey, bro.', 'next': None}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'Yup. Just the event hall, otherwise named "The Roof".',
+                    'Fun fact, the student council hosts their Hari Raya event here.',
+                    'Occasionally, there would be local businesses selling here during special events hosted by our BTEC business students.'
+                ],
+                'options': [
+                    {'text': 'Good to know.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # annexe elevator
+    'Atticus_e': {
+        'name': 'Atticus',
+        'directions': ['right'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'The elevator only goes up and in a loop. Sorry for the inconvenience.',
+                    'The order goes from Level G to 1 to 2 to 3, then back to G.',
+                    'The developer has declared full fault for this and will improve in the near future.'
+                ],
+                'options': None
+            }
+        }
+    },
+    #main level 3 south
+    'Atticus_m3south': {
+        'name': 'Atticus',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Hello again.',
+                'options': [
+                    {'text': 'Hello.', 'next': None},
+                    {'text': 'What are the rooms in this area?', 'next': 'rooms'},
+                    {'text': 'How did you get here so quick?', 'next': 'teleport'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'Lecture Halls 3 and 8 are to my right, then there\'s Computer Lab 3 to my left next to the QA officer\'s office.',
+                    'Further down the hall across from us, you can find Lecture Hall 9 and the bridge to the Annexe building.'
+                ],
+                'options': [
+                    {'text': 'Thanks.', 'next': 'end'},
+                ]
+            },
+            'teleport': {
+                'text': [
+                    'Just trying to be efficient, haha.',
+                    'Is there anything you need?'
+                ],
+                'options': [
+                    {'text': 'About the rooms...', 'next': 'rooms'},
+                    {'text': 'Not at the moment.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # main level 2 south
+    'Atticus_m2': {
+        'name': 'Atticus',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Hello again.',
+                'options': [
+                    {'text': 'Hi.', 'next': None},
+                    {'text': 'What are the rooms in this area?', 'next': 'rooms'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'On my right is the library and beside it are some lockers you can rent out.',
+                    'Going up the hall leads to Lecture Halls 4, 5, and 6, Lecture Room 4, and the cafeteria.',
+                    'There\'s also Tutorial Room 1 and some offices. Our Counselling Unit office is next to the incubation centre.'
+                    'It looks like a train, you can\'t miss it.'
+                ],
+                'options': [
+                    {'text': 'Thanks.', 'next': 'end'},
+                    {'text': 'Incuvation?', 'next': 'incuvation'},
+                ]
+            },
+            'incuvation': {
+                'text': [
+                    'The incuvation centre is where you can propose business ideas to LCB.',
+                    'Two foundation students proposed to rebrand the Kiosk in the library and turned it into a stationery shop.',
+                    'Isn\'t that inspiring?'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Seems so. Thanks for the info.', 'next': 'end'},
+                ]
+            },
+            'questions':{
+                'text': 'Sure, what\'s your question?',
+                'options': [
+                    {'text': 'What are the rooms on this level?', 'next': 'rooms'},
+                    {'text': 'Nevermind.', 'next': 'end'}
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # main level 2 cafeteria
+    'Atticus_cafe': {
+        'name': 'Atticus',
+        'directions': ['down'],
+        'look_around': True,
+        'dialog': {
+            'start': {
+                'text': [
+                    'Hey, welcome to the cafeteria!',
+                    'Some of the students are here, maybe you can interact with them to know about their course.'
+                ],
+                'options': [
+                    {'text': 'I see, thanks.', 'next': 'end'},
+                    {'text': 'What are the rooms in this area?', 'next': 'rooms'},
+                    {'text': 'I was actually going back up.', 'next': 'mistake'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'You\'ve passed the library and the locker room beside it.',
+                    'Going up the hall leads to Lecture Halls 4, 5, and 6, as well as Lecture Room 4.',
+                    'We also have some offices here and a meeting room. Then there\'s our guidance counsellor\'s office next to the incubation centre.'
+                    'It looks like a train, you can\'t miss it.'
+                ],
+                'options': [
+                    {'text': 'Thanks.', 'next': 'end'},
+                    {'text': 'Incubation?', 'next': 'incuvation'},
+                ]
+            },
+            'incuvation': {
+                'text': [
+                    'The incubation centre is where you can propose business ideas to LCB.',
+                    'Two foundation students proposed to rebrand the Kiosk in the library and turned it into a stationery shop.',
+                    'Isn\'t that inspiring?'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Seems so. Thanks for the info.', 'next': 'end'},
+                ]
+            },
+            'questions':{
+                'text': 'Sure, what\'s your question?',
+                'options': [
+                    {'text': 'What are the rooms on this level?', 'next': 'rooms'},
+                    {'text': 'Nevermind.', 'next': 'end'}
+                ]
+            },
+            'mistake':{
+                'text': '...My bad, haha.',
+                'options': None # none = dialog end
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # rooftop
+
+    # computing
     'Dylan': {
         'name': 'Dylan',
         'directions': ['down'],
@@ -49,14 +443,14 @@ CHARACTER_DATA = {
             'start': {
                 'text': 'Hey, could you help me with something?',
                 'options': [
-                    {'text': 'What\'s up?.', 'next': 'minigame'},
+                    {'text': 'What\'s up?', 'next': 'minigame'},
                     {'text': 'I\'m busy at the moment.', 'next': 'reject'}
                 ]
             },
             'minigame': {
                 'text': [
                     'I\'m finishing up some game projects for my Computer Science degree.',
-                    'Would you like to test them out for my report?'
+                    'Would you like to test them out for my report? The controls use SPACE and the arrow buttons.'
                 ],
                 'options': [
                     {'text': 'Sure! (Play Space Invaders)', 'next': 'launch_si'},
@@ -91,34 +485,102 @@ CHARACTER_DATA = {
         }
     },
 
+    # student council
     'Munaf': {
-        'directions': ['down'],
-        'radius': 0,
-        'look_around': False,
+        'name': 'Munaf',
+        'directions': ['left'],
+        'look_around': True,
         'dialog': {
-            'default': ['Welcome to LCB!']
+            'start': {
+                'text': 'Hey, I\'m Munaf! Are you interested in joining the student council?',
+                'options': [
+                    {'text': 'What do you do?', 'next': 'do'},
+                    {'text': 'I\'m just looking around.', 'next': 'end'}
+                ]
+            },
+            'do': {
+                'text': [
+                    '',
+                ],
+                'options': [
+                    {'text': 'Tell me more?', 'next': 'courses_detail'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'questions':{
+                'text': 'Sure, what would you like to know?',
+                'options': [
+                    {'text': 'What courses do you offer?', 'next': 'courses_detail'},
+                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
+                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Nevermind.', 'next': 'end'},
+                ]
+            },
+            'end': {
+                'text': 'Okay, see you soon!',
+                'options': None # none = dialog end
+            }
         }
     },
 
+    # hospitality & tourism
     'Chell': {
 
     },
 
+    # law
     'Alcina': {
 
     },
 
+    # business
     'Enise': {
 
     },
 
-    'Jay': {
-
+    # culinary
+    'Amjad': {
+        'name': 'Amjad',
+        'directions': ['down'],
+        'radius': 0,
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Welcome to the Chef! Do you have a reservation?',
+                'options': [
+                    {'text': 'No, I\'m just looking around.', 'next': 'end'},
+                    {'text': 'What\'s with the costume?', 'next': 'answer'}
+                ]
+            },
+            'answer': {
+                'text': [
+                    'We\'re having a themed dinner tonight with dishes made by our culinary students.',
+                    'Tonight we\'re focused on superhero-inspired dishes.'
+                ],
+                'options': [
+                    {'text': 'Oh, how much?', 'next': 'price'},
+                    {'text': 'I see, thank you.', 'next': 'end'},
+                ]
+            },
+            'price': {
+                'text': [
+                    'It\'s $15 for a 3-course meal consisting of an appetiser, main course, and dessert with a special beverage.',
+                    'Otherwise, it\'s $10 for just the meal with water provided.'
+                ],
+                'options': [
+                    {'text': 'I see, thank you.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem!',
+                'options': None # none = dialog end
+            }
+        }
     }
 }
 
-# Course data structure to replace monster data
-# course_data.py
+
 UNIVERSITY_PARTNERS = {
     'University of Essex': {
         'icon': 'uoelogo',

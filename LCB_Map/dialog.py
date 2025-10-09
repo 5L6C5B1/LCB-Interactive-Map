@@ -2,11 +2,12 @@ from settings import *
 from timer import Timer
 
 class DialogTree:
-    def __init__(self, character, player, all_sprites, font, bold_font, end_dialog, launch_minigame_callback):
+    def __init__(self, character, player, all_sprites, font, bold_font, end_dialog, launch_minigame_callback, hint_font=None):
         self.player = player
         self.character = character
         self.font = font
         self.bold_font = bold_font
+        self.hint_font = hint_font if hint_font else font
         self.all_sprites = all_sprites
         self.end_dialog = end_dialog
         self.launch_minigame = launch_minigame_callback
@@ -125,7 +126,8 @@ class DialogTree:
                 None,
                 self.font,
                 self.character.character_data.get('name', 'NPC'),
-                self.bold_font
+                self.bold_font,
+                self.hint_font
             )
             self.dialog_timer.activate()
             self.dialog_index += 1
@@ -149,11 +151,11 @@ class DialogTree:
                     self.current_choices.update_selection(-1)
                 elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
                     self.current_choices.update_selection(1)
-                elif keys[pygame.K_SPACE] or keys[pygame.K_RETURN]:
+                elif keys[pygame.K_SPACE] or keys[pygame.K_e] or keys[pygame.K_z]:
                     self.current_choices.confirm_selection()
             else:
                 # Advance through dialog lines
-                if keys[pygame.K_SPACE]:
+                if keys[pygame.K_SPACE] or keys[pygame.K_e] or keys[pygame.K_z]:
                     self.show_dialog_line()
     
     def update(self):
@@ -168,10 +170,8 @@ class DialogTree:
         
         self.input()
 
-
-
 class DialogSprite(pygame.sprite.Sprite):
-    def __init__(self, message, character, groups, font, speaker_name="NPC", bold_font=None):
+    def __init__(self, message, character, groups, font, speaker_name="NPC", bold_font=None, hint_font=None):
         super().__init__()
         self.z = WORLD_LAYERS['top']
 
@@ -206,7 +206,7 @@ class DialogSprite(pygame.sprite.Sprite):
                             (width - padding, separator_y), 2)
             y_offset = separator_y + 10
         else:
-            # No speaker name, start text higher
+            # No speaker name, start text higher [system/blocked collision text]
             y_offset = padding + 10
 
         # Draw wrapped text
@@ -216,6 +216,14 @@ class DialogSprite(pygame.sprite.Sprite):
 
         self.image = surf
         self.rect = self.image.get_rect(midbottom=(WINDOW_WIDTH // 2, WINDOW_HEIGHT - 20))
+
+        if speaker_name: 
+            if hint_font is None:
+                hint_font = pygame.font.Font(pygame.font.get_default_font(), 16)
+            self.hint_text = hint_font.render("Press SPACE/E/Z to continue", True, COLORS['gold'])
+            self.hint_rect = self.hint_text.get_rect()
+            # position
+            self.hint_rect.topright = (self.rect.right - 10, self.rect.top - self.hint_rect.height - 5)
 
     
     def wrap_text(self, text, font, max_width):

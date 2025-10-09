@@ -24,11 +24,6 @@ COLORS = {
     'navy': '#00486b',
     'purple': (128, 0, 128),
     'orange': (255, 165, 0),
-
-    # Element colors for courses
-    'business': (64, 64, 255),
-    'technology': (64, 255, 64),
-    'legal': (255, 64, 64),
 }
 
 WORLD_LAYERS = {

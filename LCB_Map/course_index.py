@@ -174,11 +174,11 @@ class CourseIndex:
 
                 # Display actual icon image
                 icon_name = data.get('icon', None)
-                print(f"Looking for icon: {icon_name}")  # debug
+                # print(f"Looking for icon: {icon_name}")  # debug
 
                 if icon_name:
                     icon_surf = self.icon_frames.get(icon_name)
-                    print(f"Icon surface found: {icon_surf is not None}")  # debug
+                    # print(f"Icon surface found: {icon_surf is not None}")  # debug
 
                     if icon_surf:
                         # Scale icon to fit (optional, adjust size as needed)
@@ -186,9 +186,9 @@ class CourseIndex:
                         icon_rect = icon_surf.get_frect(center = (item_rect.left + 45, item_rect.centery))
                         self.display_surface.blit(icon_surf, icon_rect)
                     else:
-                        print(f"Icon '{icon_name}' not found in icon_frames")  # debug
+                        # print(f"Icon '{icon_name}' not found in icon_frames")  # debug
     
-                        print(f"Available icons: {list(self.icon_frames.keys())}")  # debug
+                        # print(f"Available icons: {list(self.icon_frames.keys())}")  # debug
     
                         # Fallback placeholder if icon not found
                         icon_rect = pygame.FRect(item_rect.left + 20, item_rect.centery - 25, 50, 50)
@@ -590,7 +590,7 @@ class CourseIndex:
             wrapped_lines = self.wrap_text(instruction, self.fonts['small'], help_rect.width - 20)
             
             for line in wrapped_lines:
-                inst_surf = self.fonts['small'].render(line, False, COLORS['red'])
+                inst_surf = self.fonts['small'].render(line, False, COLORS['gold'])
                 inst_rect = inst_surf.get_frect(topleft = help_rect.topleft + vector(10, y_pos))
                 self.display_surface.blit(inst_surf, inst_rect)
                 y_pos += 16  # Slightly smaller spacing for wrapped lines
