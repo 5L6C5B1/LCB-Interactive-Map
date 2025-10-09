@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="43">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="57">
  <properties>
   <property name="display_name" value="Rooftop Level"/>
   <property name="display_title" value="Main Building (R)"/>
@@ -245,7 +245,7 @@
   <object id="12" x="64" y="255.333" width="128" height="128.667"/>
   <object id="13" x="-0.333333" y="320.333" width="128" height="128.333"/>
   <object id="14" x="-2" y="448.667" width="68" height="447.333"/>
-  <object id="15" x="191.667" y="660.333" width="93.6667" height="172.333"/>
+  <object id="15" x="191.667" y="660.333" width="93.6667" height="236.333"/>
   <object id="16" x="355.167" y="661.333" width="121.667" height="172.333"/>
   <object id="17" x="547.833" y="662.5" width="93.6667" height="515"/>
   <object id="18" x="321.167" y="979.833" width="253.667" height="172.333"/>
@@ -256,13 +256,49 @@
   <object id="23" x="419.167" y="3729.33" width="93.6667" height="1495.83"/>
   <object id="24" x="830.197" y="4510.02" width="519.667" height="253.666"/>
   <object id="25" x="830.5" y="4957.83" width="93.6667" height="172.333"/>
-  <object id="26" x="832.167" y="4175.83" width="448.667" height="202.333"/>
+  <object id="26" x="832.167" y="4175.83" width="522.667" height="202.333"/>
   <object id="27" x="831.167" y="3583.83" width="93.6667" height="477.333"/>
   <object id="28" x="766.167" y="3030.83" width="322.667" height="770.333"/>
   <object id="29" x="958.167" y="1856.83" width="93.6667" height="1279.33"/>
   <object id="30" x="766.167" y="1048.99" width="319.667" height="1090.18"/>
   <object id="34" x="764.409" y="651.88" width="319.667" height="207.392"/>
   <object id="38" x="386.167" y="5006.83" width="576.667" height="172.333"/>
+  <object id="43" x="1222.5" y="4415.75" width="9.75" height="140.5">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="fire_exit" value="A fire exit."/>
+   </properties>
+  </object>
+  <object id="44" x="1228" y="4291" width="104.5" height="381"/>
+  <object id="45" x="622.909" y="1536.55" width="4.90909" height="112">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="Registrar office."/>
+   </properties>
+  </object>
+  <object id="46" x="512.333" y="1473" width="112.333" height="224.667"/>
+  <object id="47" x="781.333" y="897" width="9.33333" height="202.333">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="restroom" value="Restrooms."/>
+   </properties>
+  </object>
+  <object id="48" x="786.667" y="833.667" width="110" height="319"/>
+  <object id="49" x="779.75" y="512" width="10.5" height="176.25">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="Staff office. Finance and Computing department are here."/>
+   </properties>
+  </object>
+  <object id="50" x="783.333" y="449.333" width="112.333" height="302"/>
+  <object id="51" x="262.75" y="273.5" width="242.5" height="208.5"/>
+  <object id="55" x="0.333333" y="791.018" width="256" height="94"/>
+  <object id="56" x="51.8503" y="787.648" width="151.5" height="6">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="stairs" value="It's the fire escape staircase."/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="4" name="Transition">
   <object id="31" x="566" y="1153.33" width="9" height="174">
@@ -283,13 +319,13 @@
     <property name="target" value="main_rooftop_mockcabin"/>
    </properties>
   </object>
-  <object id="35" x="625.5" y="1536" width="6.75" height="99.75">
+  <object id="37" x="464.667" y="716.583" width="93.6667" height="4.33333">
    <properties>
     <property name="pos" value="main_rooftop"/>
-    <property name="target" value="main_rooftop_lab2"/>
+    <property name="target" value="main_3_reception"/>
    </properties>
   </object>
-  <object id="37" x="464.667" y="716.583" width="93.6667" height="4.33333">
+  <object id="52" x="272.667" y="715.833" width="93.6667" height="4.33333">
    <properties>
     <property name="pos" value="main_rooftop"/>
     <property name="target" value="main_3_reception"/>

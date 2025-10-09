@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="76" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="94">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="76" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="132">
  <properties>
   <property name="display_name" value="Level 2"/>
   <property name="display_title" value="Main Building (L2)"/>
@@ -16,6 +16,7 @@
  <tileset firstgid="4108" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
   <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
  </tileset>
+ <tileset firstgid="5115" source="../tilesets/LCB_indoor.tsx"/>
  <layer id="1" name="Floor" width="40" height="76">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,158,158,158,158,158,158,158,158,158,158,158,158,0,0,0,0,0,0,0,0,0,
@@ -32,10 +33,10 @@
 2638,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,2640,208,25,25,25,25,25,25,25,25,25,25,25,25,25,233,25,25,25,2713,183,0,0,0,0,
 2638,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,233,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,208,0,0,0,0,
 2638,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,233,0,0,0,0,
-2593,133,133,133,133,133,88,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,2947,0,0,0,0,0,
-0,0,0,0,0,0,56,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,2792,0,0,0,0,0,
-0,0,0,0,0,0,56,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,2792,0,0,0,0,0,
-0,0,0,0,0,0,63,25,25,25,25,25,25,25,25,25,25,89,412,414,133,133,133,133,412,414,133,133,133,283,412,414,283,283,2594,0,0,0,0,0,
+2593,133,133,133,133,133,88,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,5504,0,0,0,0,
+0,0,0,0,0,0,56,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,2792,0,0,0,0,
+0,0,0,0,0,0,56,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,2792,0,0,0,0,
+0,0,0,0,0,0,63,25,25,25,25,25,25,25,25,25,25,89,412,414,133,133,133,133,412,414,133,133,133,283,412,414,283,283,283,2594,0,0,0,0,
 0,0,0,0,0,0,33,25,25,25,25,25,25,25,25,25,25,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,58,25,25,25,25,25,25,25,25,25,25,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,83,25,25,25,25,25,25,25,25,25,25,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -219,6 +220,33 @@
    </properties>
    <point/>
   </object>
+  <object id="98" name="Character" x="1792" y="3392">
+   <properties>
+    <property name="character_id" value="Dylan"/>
+    <property name="direction" value="down"/>
+    <property name="graphic" value="dylan"/>
+    <property name="radius" value="0"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="101" name="Character" x="1280" y="3328">
+   <properties>
+    <property name="character_id" value="Atticus_cafe"/>
+    <property name="direction" value="left"/>
+    <property name="graphic" value="atticus"/>
+    <property name="radius" value="150"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="105" name="Character" x="1152" y="4544">
+   <properties>
+    <property name="character_id" value="Atticus_m2"/>
+    <property name="direction" value="left"/>
+    <property name="graphic" value="atticus"/>
+    <property name="radius" value="400"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
  <objectgroup id="4" name="Collisions">
   <object id="7" x="1087.88" y="3846.61" width="451.515" height="596.545"/>
@@ -245,7 +273,7 @@
   <object id="32" x="-38" y="321" width="1126" height="349.333"/>
   <object id="33" x="1021.67" y="256.834" width="67.167" height="474.833"/>
   <object id="34" x="1088.67" y="3032.67" width="1532.67" height="196"/>
-  <object id="35" x="1089.64" y="1048" width="89.3337" height="450.666"/>
+  <object id="35" x="1089.64" y="1048" width="88.0004" height="450.666"/>
   <object id="36" x="1087.67" y="1618.67" width="190.667" height="585.333"/>
   <object id="37" x="1087.33" y="2324.33" width="318.667" height="581.333"/>
   <object id="49" x="1254" y="1048" width="310.667" height="232.666"/>
@@ -260,22 +288,22 @@
   <object id="63" x="1857.83" y="3143.83" width="190.333" height="227"/>
   <object id="64" x="1921.49" y="3207.83" width="62.9997" height="231"/>
   <object id="65" x="2111.17" y="3099.83" width="130.166" height="256.333"/>
-  <object id="66" x="2184.67" y="3327.83" width="56.3327" height="287.333"/>
+  <object id="66" x="2184.67" y="3327.83" width="56.3327" height="283.878"/>
   <object id="67" x="2242.17" y="3099.33" width="378.999" height="200.333"/>
   <object id="68" x="2495.83" y="3031.83" width="125.666" height="1703.67"/>
-  <object id="69" x="2431.83" y="3607.83" width="237.666" height="264.333"/>
+  <object id="69" x="2431.83" y="3607.83" width="237.666" height="424.333"/>
   <object id="70" x="2175.83" y="3677.17" width="336.333" height="78.333"/>
-  <object id="71" x="2381.17" y="3865.83" width="288.666" height="869.833"/>
+  <object id="71" x="2382.5" y="3865.83" width="287.333" height="869.833"/>
   <object id="72" x="1600" y="4574.83" width="959.833" height="286.333"/>
   <object id="73" x="1619.92" y="4043.58" width="237.666" height="628.833"/>
   <object id="74" x="1651.17" y="3652.83" width="206.166" height="228.333"/>
   <object id="75" x="1619.67" y="3848.33" width="173.666" height="256.333"/>
-  <object id="76" x="1982.5" y="3819.5" width="129.999" height="177.666"/>
-  <object id="77" x="2175" y="3818.83" width="129.999" height="177.666"/>
-  <object id="78" x="1982.67" y="4075.83" width="129.999" height="177.666"/>
-  <object id="79" x="2175.33" y="4074.83" width="129.999" height="177.666"/>
-  <object id="80" x="2174.67" y="4330.5" width="129.999" height="177.666"/>
-  <object id="81" x="1983" y="4331.17" width="129.999" height="177.666"/>
+  <object id="76" x="1985.05" y="3819.5" width="125.817" height="169.416"/>
+  <object id="77" x="2177" y="3818.83" width="126.181" height="170.166"/>
+  <object id="78" x="1984.85" y="4075.83" width="125.999" height="168.999"/>
+  <object id="79" x="2176.97" y="4074.83" width="125.999" height="169.999"/>
+  <object id="80" x="2176.8" y="4330.5" width="125.874" height="170.333"/>
+  <object id="81" x="1984.64" y="4331.17" width="126.613" height="169.416"/>
   <object id="84" x="1021" y="285" width="323" height="198"/>
   <object id="85" x="1151" y="-1" width="899" height="160"/>
   <object id="86" x="1856" y="285" width="286.667" height="194"/>
@@ -284,6 +312,86 @@
   <object id="89" x="2049.33" y="319.333" width="190" height="193.333"/>
   <object id="90" x="255" y="4756" width="1343" height="282"/>
   <object id="93" x="704" y="1101.33" width="191.333" height="1074"/>
+  <object id="94" x="647.417" y="2321.75" width="242.5" height="208.5"/>
+  <object id="95" x="648.083" y="2580.42" width="242.5" height="208.5"/>
+  <object id="96" x="648.083" y="2838.42" width="242.5" height="208.5"/>
+  <object id="109" x="428" y="2817" width="7.66667" height="175.333">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="fire_exit" value="A fire exit."/>
+   </properties>
+  </object>
+  <object id="110" x="319.5" y="2752.5" width="112" height="290"/>
+  <object id="111" x="236.5" y="2304.5" width="7.5" height="111.5">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="It's the Counselling Unit office."/>
+   </properties>
+  </object>
+  <object id="112" x="127.5" y="2242" width="112" height="254.5"/>
+  <object id="113" x="430.5" y="1728" width="8" height="177">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="inaccessible" value="Tutorial Room 1."/>
+   </properties>
+  </object>
+  <object id="114" x="319.5" y="1664.5" width="113" height="320"/>
+  <object id="115" x="429.5" y="1280" width="6.25" height="112.75">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="Staff room."/>
+   </properties>
+  </object>
+  <object id="116" x="319.75" y="1216.5" width="111.75" height="256.25"/>
+  <object id="118" x="1167.82" y="1100.73" width="96.1818" height="5.63636">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="It's the office for the Programme Leader for Marketing."/>
+   </properties>
+  </object>
+  <object id="119" x="1151.82" y="1104.55" width="128.727" height="76.9091"/>
+  <object id="120" x="1551.97" y="1100.3" width="96.1818" height="5.63636">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="Head of Business/Hospitality."/>
+   </properties>
+  </object>
+  <object id="121" x="1535.97" y="1104.12" width="128.727" height="76.9091"/>
+  <object id="122" x="1935.97" y="1100.3" width="96.1818" height="5.63636">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="It's the office for the Programme Leader of Accounting &amp; Finance."/>
+   </properties>
+  </object>
+  <object id="123" x="1919.97" y="1104.12" width="128.727" height="76.9091"/>
+  <object id="124" x="2251.75" y="832.5" width="7.75" height="112">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="office" value="Staff room."/>
+   </properties>
+  </object>
+  <object id="125" x="2256.25" y="768.75" width="111.5" height="254"/>
+  <object id="126" x="1244.75" y="192.75" width="8.5" height="139.75">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="restroom" value="Female restroom."/>
+   </properties>
+  </object>
+  <object id="127" x="1151" y="128.5" width="97.75" height="243.75"/>
+  <object id="128" x="1941.67" y="192.667" width="7.66667" height="140">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="restroom" value="Male restroom."/>
+   </properties>
+  </object>
+  <object id="129" x="1946" y="129.333" width="72.6667" height="242.667"/>
+  <object id="130" x="1276.38" y="4520" width="136" height="10.75">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="inaccessible" value="This escalator only goes down to this level."/>
+   </properties>
+  </object>
+  <object id="131" x="1271.88" y="4416.25" width="144.25" height="109.5"/>
  </objectgroup>
  <objectgroup id="6" name="Transition">
   <object id="38" x="1212" y="3747.33" width="136" height="13.6667">

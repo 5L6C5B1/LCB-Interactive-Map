@@ -4,8 +4,15 @@
   <property name="display_name" value="Upper Library (Quiet Zone)"/>
   <property name="display_title" value="Main Building (L3)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
+ <tileset firstgid="2558" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
  <layer id="1" name="Floor" width="17" height="31">
   <data encoding="csv">
 0,0,0,0,0,11,158,158,158,158,158,158,158,158,158,158,12,
@@ -101,10 +108,10 @@
   <object id="15" x="548.5" y="256.625" width="309" height="179.25"/>
   <object id="16" x="548.5" y="959.875" width="309" height="179.25"/>
   <object id="17" x="549" y="1664.38" width="309" height="179.25"/>
-  <object id="18" x="574" y="1407.38" width="259.5" height="111.25"/>
-  <object id="19" x="572.75" y="1216.88" width="259.5" height="111.25"/>
-  <object id="20" x="574.25" y="702.875" width="259.5" height="111.25"/>
-  <object id="21" x="574.25" y="511.875" width="259.5" height="111.25"/>
+  <object id="18" x="574" y="1367.88" width="259.5" height="116.75"/>
+  <object id="19" x="572.75" y="1172.88" width="259.5" height="119.75"/>
+  <object id="20" x="574.25" y="663.375" width="259.5" height="116.75"/>
+  <object id="21" x="574.25" y="469.375" width="259.5" height="118.25"/>
  </objectgroup>
  <objectgroup id="5" name="Transition">
   <object id="22" x="117.667" y="1268.33" width="145.667" height="11">
