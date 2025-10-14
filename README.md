@@ -1,6 +1,11 @@
 # LCB-Interactive-Map
 An interactive map of Laksamana College of Business. Made with Python + Pygame CE. The application aims to cater introverted individuals and for those unable to visit the campus in person for pre-class preparation or to simply look around and learn about LCB.
 
+**Features:**
+- Fully mapped out areas of the college
+- NPC Interaction
+- Minigames
+
 ⚠️ This is a Windows only application. MacOs and Linux are currently not supported.
 
 **Installation Instructions:**
@@ -10,11 +15,6 @@ An interactive map of Laksamana College of Business. Made with Python + Pygame C
 4. Extract the files
 5. Run the .exe file
 6. If you are met with a Windows Defender screen, click on more info then "Run anyway"
-
-**Features:**
-- Fully mapped out areas of the college
-- NPC Interaction
-- Minigames
 
 If you are hesitant to run the application, you may download the source codes (ZIP file) from the v.1.0.0 release and run a virus check.
 
