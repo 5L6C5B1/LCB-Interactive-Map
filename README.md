@@ -11,6 +11,6 @@ Installation Instructions:
 5. Run the .exe file
 6. If you are met with a Windows Defender screen, click on more info then "Run anyway"
 
-If you are hesitant to run the application, you may download the source codes (this repository) by clicking on the green "<> Code" dropdown button and clicking "Download ZIP" and run a virus check.
+If you are hesitant to run the application, you may download the source codes (ZIP file) from the v.1.0.0 release and run a virus check.
 
 If any other problems occur, do not hesitate to contact me through 5651@laksamanacollege.edu.bn
