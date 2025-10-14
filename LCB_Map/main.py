@@ -3,6 +3,7 @@ import pygame_menu
 import datetime
 import subprocess
 import sys
+import pygame.mixer
 from pathlib import Path
 from button import Button
 from settings import *
@@ -20,9 +21,9 @@ from course_index import CourseIndex
 from support import *
 from course import Course
 
-icon = pygame.image.load('graphics/icons/lcblogo.png')
-bg = pygame.image.load('graphics/backgrounds/background.png')
-howToBG = pygame.image.load('graphics/backgrounds/howtoplay.png')
+icon = pygame.image.load(resource_path('graphics/icons/lcblogo.png'))
+bg = pygame.image.load(resource_path('graphics/backgrounds/background.png'))
+howToBG = pygame.image.load(resource_path('graphics/backgrounds/howtoplay.png'))
 
 
 fullscreen = False
@@ -61,8 +62,28 @@ class Game:
         
         self.import_assets()
         # DEBUG: Print what icons were loaded
-        print("Icons loaded:", list(self.course_frames['icons'].keys()))
+        # print("Icons loaded:", list(self.course_frames['icons'].keys()))
+
+        # Background music
+        self.music_muted = False
+        self.music_icon_on = pygame.image.load(resource_path('graphics/ui/Speaker-0.png'))
+        self.music_icon_off = pygame.image.load(resource_path('graphics/ui/Speaker-Crossed.png'))
+        self.music_icon_on = pygame.transform.scale(self.music_icon_on, (48, 48))
+        self.music_icon_off = pygame.transform.scale(self.music_icon_off, (48, 48))
+        self.music_icon_rect = pygame.Rect(WINDOW_WIDTH - 68, 20, 48, 48)
+        
+        # Start background music
+        pygame.mixer.music.load(resource_path('audio/Gunma-chanGambol.ogg'))
+        pygame.mixer.music.set_volume(0.5)  # 50% volume
+        pygame.mixer.music.play(-1)  # loop forever
+
         self.setup(self.tmx_maps['main_3_reception'], 'spawn')
+
+        # Custom cursor
+        cursor_img = pygame.image.load(resource_path('graphics/ui/Cursor Pointer.png'))
+        cursor_img = pygame.transform.scale(cursor_img, (32, 32))
+        pygame.mouse.set_visible(False)  # hide default cursor
+        self.custom_cursor = cursor_img
 
         # Overlays
         self.dialog_tree = None
@@ -81,29 +102,36 @@ class Game:
         else:
             self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
+    def toggle_music(self):
+        self.music_muted = not self.music_muted
+        if self.music_muted:
+            pygame.mixer.music.pause()
+        else:
+            pygame.mixer.music.unpause()
+
     def import_assets(self):
-        self.tmx_maps = tmx_importer('data', 'maps')
+        self.tmx_maps = tmx_importer(resource_path('data'), 'maps')
 
         self.overworld_frames = {
-            'characters': all_character_import('graphics', 'characters')
+            'characters': all_character_import(resource_path('graphics'), 'characters')
         }
 
         self.course_frames = {
-            'icons': import_folder_dict('graphics', 'icons'),
-            'courses': import_folder_dict('graphics', 'icons'),
-            'ui': import_folder_dict('graphics', 'ui')
+            'icons': import_folder_dict(resource_path('graphics'), 'icons'),
+            'courses': import_folder_dict(resource_path('graphics'), 'icons'),
+            'ui': import_folder_dict(resource_path('graphics'), 'ui')
         }
 
         self.fonts = {
-            'menu title': pygame.font.Font(join('graphics', 'fonts', 'VT323-Regular.ttf'), 90),
-            'menu regular': pygame.font.Font(join('graphics', 'fonts', 'dogicapixel.otf'), 18),
-            'dialog': pygame.font.Font(join('graphics', 'fonts', 'PixeloidSans.ttf'), 30),
-            'regular': pygame.font.Font(join('graphics', 'fonts', 'PixeloidSans.ttf'), 18),
-            'small': pygame.font.Font(join('graphics', 'fonts', 'PixeloidSans.ttf'), 14),
-            'bold': pygame.font.Font(join('graphics', 'fonts', 'dogicapixelbold.otf'), 20)
+            'menu title': pygame.font.Font(resource_path(join('graphics', 'fonts', 'VT323-Regular.ttf')), 90),
+            'menu regular': pygame.font.Font(resource_path(join('graphics', 'fonts', 'dogicapixel.otf')), 18),
+            'dialog': pygame.font.Font(resource_path(join('graphics', 'fonts', 'PixeloidSans.ttf')), 30),
+            'regular': pygame.font.Font(resource_path(join('graphics', 'fonts', 'PixeloidSans.ttf')), 18),
+            'small': pygame.font.Font(resource_path(join('graphics', 'fonts', 'PixeloidSans.ttf')), 14),
+            'bold': pygame.font.Font(resource_path(join('graphics', 'fonts', 'dogicapixelbold.otf')), 20)
         }
 
-        self.audio = audio_importer('audio')
+        self.audio = audio_importer(resource_path('audio'))
 
     def setup(self, tmx_map, player_start_pos):
         # Get room name
@@ -114,47 +142,46 @@ class Game:
         for group in (self.all_sprites, self.collision_sprites, self.transition_sprites, self.character_sprites):
             group.empty()
 
-        # DEBUG: Check for missing tiles before creating sprites
-        print(f"Debugging map: {tmx_map}")
-        for layer in tmx_map.visible_layers:
-            if hasattr(layer, 'data'):
-                print(f"Checking layer: {layer.name}")
-                for x, y, gid in layer:
-                    if gid != 0:  # 0 means empty tile
-                        surf = tmx_map.get_tile_image_by_gid(gid)
-                        if surf is None:
-                            print(f"Missing tile: GID {gid} at ({x}, {y}) in layer '{layer.name}'")
+        # Count tiles for debugging
+        floor_tiles = 0
+        floor_missing = 0
+        furnishing_tiles = 0
+        furnishing_missing = 0
 
         # Floor & Furnishing (with safety check)
-        for layer in ['Floor', 'Furnishing']:
-            for x, y, surf in tmx_map.get_layer_by_name(layer).tiles():
+        for layer_name in ['Floor', 'Furnishing']:
+            layer = tmx_map.get_layer_by_name(layer_name)
+            for x, y, surf in layer.tiles():
                 if surf is None:
-                    print(f"Skipping None surface at ({x}, {y}) in layer '{layer}'")
+                    if layer_name == 'Floor':
+                        floor_missing += 1
+                    else:
+                        furnishing_missing += 1
                     continue  # Skip creating sprite for missing tiles
+                
                 Sprite((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, WORLD_LAYERS['bg'])
+                
+                if layer_name == 'Floor':
+                    floor_tiles += 1
+                else:
+                    furnishing_tiles += 1
+
+        # print(f"✅ Map loaded: {tmx_map.properties.get('display_name', 'Unknown')}")
+        # print(f"   Floor: {floor_tiles} tiles loaded, {floor_missing} missing")
+        # print(f"   Furnishing: {furnishing_tiles} tiles loaded, {furnishing_missing} missing")
 
         # Transitions
         for obj in tmx_map.get_layer_by_name('Transition'):
-            #debug for transition errors
-            # print(f"Transition object at ({obj.x}, {obj.y})")
-            # print(f"  Available properties: {list(obj.properties.keys())}")
-            # print(f"  Object name: {getattr(obj, 'name', 'unnamed')}")
-            
-            # if 'target' not in obj.properties:
-            #     print(f"  ERROR: Missing 'target' property!")
-            #     continue
-            
-            # if 'pos' not in obj.properties:
-            #     print(f"  ERROR: Missing 'pos' property!")
-            #     continue
-            TransitionSprite((obj.x, obj.y), (obj.width, obj.height), (obj.properties['target'], obj.properties['pos']), self.transition_sprites)
+            TransitionSprite((obj.x, obj.y), (obj.width, obj.height), 
+                            (obj.properties['target'], obj.properties['pos']), 
+                            self.transition_sprites)
 
         self.blocked_sprites.empty()
 
         # Collisions + Blocked Collisions
         for obj in tmx_map.get_layer_by_name('Collisions'):
             if obj.properties.get('collision_type') == 'blocked':
-            # Check which type of blocked collision this is and get the message
+                # Check which type of blocked collision this is and get the message
                 message_type = None
                 message_text = "You can't go there!"  # Default message
                 
@@ -186,7 +213,6 @@ class Game:
                     message_type = 'surau'
                     message_text = obj.properties['surau']
                 
-                # print(f"Creating blocked sprite with message: {message_text}") # Debug
                 BlockedSprite((obj.x, obj.y), pygame.Surface((obj.width, obj.height)), 
                             self.blocked_sprites, message_type, message_text)
             else:
@@ -514,7 +540,9 @@ class Game:
                     exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
                     self.toggle_fullscreen()
-
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                    if self.music_icon_rect.collidepoint(event.pos):
+                        self.toggle_music()
                 if self.index_open and event.type == pygame.MOUSEWHEEL:
                     self.course_index.handle_scroll(-event.y)
 
@@ -573,6 +601,10 @@ class Game:
                 
                 self.display_surface.blit(title_text, (base_x, title_y))
 
+            # music icon
+            current_icon = self.music_icon_off if self.music_muted else self.music_icon_on
+            self.display_surface.blit(current_icon, self.music_icon_rect.topleft)
+
             # Overlays
             if not self.paused:
                 if self.dialog_tree: 
@@ -586,6 +618,10 @@ class Game:
             # Tint screen (existing transition system)
             if not self.paused:  # Only do transitions when not paused
                 self.tint_screen(dt)
+
+            # custom cursor
+            mouse_pos = pygame.mouse.get_pos()
+            self.display_surface.blit(self.custom_cursor, mouse_pos)
             pygame.display.update()
   
     # How to Play menu
@@ -601,12 +637,19 @@ class Game:
             icon_rect = pygame.Rect(35, 35, 48, 48)  # x, y, width, height
             self.display_surface.blit(back_icon_resize, (35, 35))
 
+            current_icon = self.music_icon_off if self.music_muted else self.music_icon_on
+            self.display_surface.blit(current_icon, self.music_icon_rect.topleft)
+
+            self.display_surface.blit(self.custom_cursor, howTo_mouse_pos)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if icon_rect.collidepoint(howTo_mouse_pos):
+                    if self.music_icon_rect.collidepoint(howTo_mouse_pos):
+                        self.toggle_music()
+                    elif icon_rect.collidepoint(howTo_mouse_pos):
                         game.main_menu()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:
                     self.toggle_fullscreen()
@@ -642,16 +685,24 @@ class Game:
                 button.changeColor(menu_mouse_pos)
                 button.update(self.display_surface)
 
+            current_icon = self.music_icon_off if self.music_muted else self.music_icon_on
+            self.display_surface.blit(current_icon, self.music_icon_rect.topleft)
+
+            # Draw custom cursor
+            self.display_surface.blit(self.custom_cursor, menu_mouse_pos)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if play_btn.checkInput(menu_mouse_pos):
+                    if self.music_icon_rect.collidepoint(menu_mouse_pos):
+                        self.toggle_music()
+                    elif play_btn.checkInput(menu_mouse_pos):
                         game.run()
-                    if howTo_btn.checkInput(menu_mouse_pos):
+                    elif howTo_btn.checkInput(menu_mouse_pos):
                         game.howTo()
-                    if quit_btn.checkInput(menu_mouse_pos):
+                    elif quit_btn.checkInput(menu_mouse_pos):
                         pygame.quit()
                         exit()
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_F11:

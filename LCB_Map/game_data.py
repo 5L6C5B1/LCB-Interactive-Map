@@ -32,6 +32,7 @@ CHARACTER_DATA = {
                     {'text': 'What courses do you offer?', 'next': 'courses_detail'},
                     {'text': 'Do you do evening classes?', 'next': 'study_mode'},
                     {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Is there a dormitory?', 'next': 'dorm'},
                     {'text': 'Nevermind.', 'next': 'end'},
                 ]
             },
@@ -64,7 +65,8 @@ CHARACTER_DATA = {
             },
             'payment': {
                 'text': [
-                    'Our finance department is located up at the rooftop level.',
+                    'Our finance department is located here at the rooftop level. It is open every day until 4:30 PM.',
+                    'However, if you are unable to make it before that time, the office will be open at night on Tuesdays, Thursdays, and Fridays.',
                     'Feel free to inquire the receptionist there when you visit our college in person.'
                 ],
                 'options': [
@@ -74,8 +76,125 @@ CHARACTER_DATA = {
             },
             'dorm': {
                 'text': [
-                    'We do have a dormitory on Jalan Laksamana Abdul Razak, next to the traffic light.',
-                    'For more details, you can check our website under Student Life, then Accomodation.'
+                    'We do have a dormitory on Jalan Laksamana Abdul Razak, next to the traffic light. It\'s a 5-minute walk from here.',
+                    'It has 24-hour security, a car park, common laundry room, gym, and Wifi which connects up to 3 devices per student.',
+                    'We also provide housekeeping, air-conditioning, beds, study tables, wardrobes and black-out curtains.',
+                    'For more details, you can check our website under Campus Life, then Accomodation.'
+                ],
+                'options': [
+                    {'text': 'How much is the rent?', 'next': 'dorm_rent'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'dorm_rent': {
+                'text': [
+                    'All rooms have a different rate depending on area size, ensuite bathrooms, and balconies.',
+                    'Our lowest rate is $240/month while our highest is $450/month.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'end': {
+                'text': 'Alright, have a great day!',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    # rooftop eceptionist
+    'Cortana_r': {
+        'name': 'Cortana',
+        'directions': ['left'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': 'Welcome to LCB! I\'m Cortana, how can I help you?',
+                'options': [
+                    {'text': 'What courses do you offer?', 'next': 'courses'},
+                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
+                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Is there a dormitory?', 'next': 'dorm'},
+                    {'text': 'I\'m just looking around.', 'next': 'end'}
+                ]
+            },
+            'courses': {
+                'text': [
+                    'We offer Business, Computing, Culinary, and Law courses.',
+                    'The courses we provide are awarded by University of Essex, Kensington College, City & Guilds, and Pearson BTEC.'
+                ],
+                'options': [
+                    {'text': 'Tell me more?', 'next': 'courses_detail'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'questions':{
+                'text': 'Sure, what would you like to know?',
+                'options': [
+                    {'text': 'What courses do you offer?', 'next': 'courses_detail'},
+                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
+                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'Is there a dormitory?', 'next': 'dorm'},
+                    {'text': 'Nevermind.', 'next': 'end'},
+                ]
+            },
+            'courses_detail': {
+                'text': 'You may see the courses we offer by pressing TAB or X, or find more information on our website!',
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'study_mode': {
+                'text': [
+                    'Yes! We offer both full-time and evening classes for those who work part-time.',
+                    'However, not all courses offer evening classes.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'fees': {
+                'text': [
+                    'Our fees vary upon the course you\'re interested in.'
+                ],
+                'options': [
+                    {'text': 'Where do I make payments for deposits/fees?', 'next': 'payment'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'payment': {
+                'text': [
+                    'Our finance department is located here at the rooftop level. It is open every day until 4:30 PM.',
+                    'However, if you are unable to make it before that time, the office will be open at night on Tuesdays, Thursdays, and Fridays.',
+                    'Feel free to inquire the receptionist there when you visit our college in person.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'dorm': {
+                'text': [
+                    'We do have a dormitory on Jalan Laksamana Abdul Razak, next to the traffic light. It\'s a 5-minute walk from here.',
+                    'It has 24-hour security, a car park, common laundry room, gym, and Wifi which connects up to 3 devices per student.',
+                    'We also provide housekeeping, air-conditioning, beds, study tables, wardrobes and black-out curtains.',
+                    'For more details, you can check our website under Campus Life, then Accomodation.'
+                ],
+                'options': [
+                    {'text': 'How much is the rent?', 'next': 'dorm_rent'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'dorm_rent': {
+                'text': [
+                    'All rooms have a different rate depending on area size, ensuite bathrooms, and balconies.',
+                    'Our lowest rate is $240/month while our highest is $450/month.'
                 ],
                 'options': [
                     {'text': 'I want to ask something else.', 'next': 'questions'},
@@ -352,7 +471,7 @@ CHARACTER_DATA = {
             },
             'incuvation': {
                 'text': [
-                    'The incuvation centre is where you can propose business ideas to LCB.',
+                    'The incuvation centre is where you can propose business ideas to LCB. They\'ll mentor you to make sure you\'re on the right track too.',
                     'Two foundation students proposed to rebrand the Kiosk in the library and turned it into a stationery shop.',
                     'Isn\'t that inspiring?'
                 ],
@@ -395,7 +514,7 @@ CHARACTER_DATA = {
                 'text': [
                     'You\'ve passed the library and the locker room beside it.',
                     'Going up the hall leads to Lecture Halls 4, 5, and 6, as well as Lecture Room 4.',
-                    'We also have some offices here and a meeting room. Then there\'s our guidance counsellor\'s office next to the incubation centre.'
+                    'We also have some offices here and a meeting room. Then there\'s our guidance counsellor\'s office next to the incubation centre.',
                     'It looks like a train, you can\'t miss it.'
                 ],
                 'options': [
@@ -432,16 +551,76 @@ CHARACTER_DATA = {
         }
     },
     # rooftop
+    'Atticus_r': {
+        'name': 'Atticus',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'Rooftop level!',
+                    'Good to see you again.'
+                ],
+                'options': [
+                    {'text': 'Nice to see you, too.', 'next': None},
+                    {'text': 'What are the rooms in this area?', 'next': 'rooms'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'There\'s Computer Lab 2, the Student Council meeting room, and the Mockup Cabin down the hall.',
+                    'The Computing, Registrar, and Finance offices are here too.',
+                    'The stairs beside the Registrar leads to the Upper Rooftop where Computer Lab 1 and Lecture Hall 7 are.'
+                ],
+                'options': [
+                    {'text': 'Thanks.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
+    #upper rooftop
+    'Atticus_ur': {
+        'name': 'Atticus',
+        'directions': ['left'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'Upper rooftop level!'
+                ],
+                'options': [
+                    {'text': 'Yes!', 'next': None},
+                    {'text': 'What are the rooms in this area?', 'next': 'rooms'}
+                ]
+            },
+            'rooms': {
+                'text': [
+                    'To my left is Lecture Hall 7, then to my right is Computer Lab 1.'
+                ],
+                'options': [
+                    {'text': 'Thanks.', 'next': 'end'},
+                ]
+            },
+            'end':{
+                'text': 'No problem, I\'ll be around.',
+                'options': None # none = dialog end
+            }
+        }
+    },
 
     # computing
-    'Dylan': {
-        'name': 'Dylan',
+    'Nico': {
+        'name': 'Nico',
         'directions': ['down'],
         'radius': 0,
         'look_around': False,
         'dialog': {
             'start': {
-                'text': 'Hey, could you help me with something?',
+                'text': 'Oh hey, could you help me with something?',
                 'options': [
                     {'text': 'What\'s up?', 'next': 'minigame'},
                     {'text': 'I\'m busy at the moment.', 'next': 'reject'}
@@ -494,31 +673,86 @@ CHARACTER_DATA = {
             'start': {
                 'text': 'Hey, I\'m Munaf! Are you interested in joining the student council?',
                 'options': [
-                    {'text': 'What do you do?', 'next': 'do'},
-                    {'text': 'I\'m just looking around.', 'next': 'end'}
+                    {'text': 'What\'s that?', 'next': 'sc'},
+                    {'text': 'No, just passing through.', 'next': 'end'}
                 ]
             },
-            'do': {
+            'sc': {
                 'text': [
-                    '',
+                    'We\'re a group of elected and volunteer students. We organise and host events in the college and contribute to the community welfare.',
+                    'It\'s also a platform where you can develop and enhance your leadership skills.' 
                 ],
                 'options': [
-                    {'text': 'Tell me more?', 'next': 'courses_detail'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'department': {
+                'text': [
+                    'We have 5 departments consisting of Logistics, Media & Communications, Secretariat, Sports, and Treasury.',
+                    'Our Sports department is also responsible for overseeing all CCA clubs.',
+                ],
+                'options': [
+                    {'text': 'What CCA\'s do you have?', 'next': 'cca'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'cca': {
+                'text': [
+                    'It varies every year, actually.',
+                    'Although, Badminton, Futsal, Dodgeball, and Performing Arts have stuck around for some time now.',
+                    'Despite it being dissolved before, E-Sports made a comeback recently.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'why_join': {
+                'text': [
+                    'You can gain work-related experience, as well as develop soft skills and find many other opportunities.',
+                    'You also get to mingle with people within the LCB community and network with those outside of it!'
+                ],
+                'options': [
+                    {'text': 'How do I join?', 'next': 'how_join'},
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'how_join': {
+                'text': [
+                    'Look for our recruitment poster or come here to our meeting room to acquire a recruitment form.',
+                    'Afterwards, you would have to attend an interview and if you have potential to make the cut, you will be under supervision for 3 months.',
+                    'Just to see how you are, of course.'
+                ],
+                'options': [
+                    {'text': 'I want to ask something else.', 'next': 'questions'},
+                    {'text': 'Thank you.', 'next': 'end'},
+                ]
+            },
+            'contact': {
+                'text': [
+                    'You can send us an email at council@laksamanacollege.edu.bn or through Instagram @lcbstudentcouncil.',
+                    'For anything sports-related, please email sports.sc@laksamanacollege.edu.bn.'
+                ],
+                'options': [
                     {'text': 'I want to ask something else.', 'next': 'questions'},
                     {'text': 'Thank you.', 'next': 'end'},
                 ]
             },
             'questions':{
-                'text': 'Sure, what would you like to know?',
+                'text': 'Sure, what do you want to know?',
                 'options': [
-                    {'text': 'What courses do you offer?', 'next': 'courses_detail'},
-                    {'text': 'Do you do evening classes?', 'next': 'study_mode'},
-                    {'text': 'How much are the tuition fees?', 'next': 'fees'},
+                    {'text': 'What do you guys do again?', 'next': 'sc'},
+                    {'text': 'What are your departments?', 'next': 'department'},
+                    {'text': 'Why should I join?', 'next': 'why_join'},
+                    {'text': 'How do I contact you for events?', 'next': 'contact'},
                     {'text': 'Nevermind.', 'next': 'end'},
                 ]
             },
             'end': {
-                'text': 'Okay, see you soon!',
+                'text': 'Okay, no problem!',
                 'options': None # none = dialog end
             }
         }
@@ -526,17 +760,68 @@ CHARACTER_DATA = {
 
     # hospitality & tourism
     'Chell': {
-
+        'name': 'Chell',
+        'directions': ['down'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'I don\'t think I can hangout for some time, just got assigned for work attachments at Empire Hotel.',
+                    'I\'ll treat you guys next time. After all, I earned good profit from my business last semester.'
+                ],
+                'options': None
+            }
+        }
     },
 
     # law
     'Alcina': {
-
+        'name': 'Alcina',
+        'directions': ['left'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'Got a Law Society workshop this week too.'
+                ],
+                'options': [
+                    {'text': 'Law Society?', 'next': 'law_society'},
+                    {'text': '...', 'next': None}
+                ]
+            },
+            'law_society': {
+                'text': [
+                    'Hm?',
+                    'Oh, it\'s just a community for law students to gain practical experience and network with professionals.'
+                ],
+                'options': [
+                    {'text': 'Cool.', 'next': 'end'},
+                    {'text': '...', 'next': None}
+                ]
+            },
+            'end': {
+                'text': [
+                    'Maybe you can join sometime if you\'re interested in law.'
+                ],
+                'options': None
+            }
+        }
     },
 
     # business
     'Enise': {
-
+        'name': 'Enise',
+        'directions': ['up'],
+        'look_around': False,
+        'dialog': {
+            'start': {
+                'text': [
+                    'It\'s alright, I gotta plan and manage an event by next month.',
+                    'Also that marketing campaign assignment...'
+                ],
+                'options': None
+            }
+        }
     },
 
     # culinary
@@ -1178,8 +1463,6 @@ COURSE_DATA = {
         }
     },
     
-    
-
     # CITY & GUILDS
     'Level 2 Diploma in Food Preparation & Culinary Arts':{
         'partner': 'City & Guilds',
