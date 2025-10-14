@@ -4,8 +4,12 @@
   <property name="display_name" value="Reception"/>
   <property name="display_title" value="Main Building (L3)"/>
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
  <layer id="1" name="Floor" width="20" height="21">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,152,153,153,153,12,
@@ -83,7 +87,7 @@
     <property name="character_id" value="Cortana"/>
     <property name="direction" value="left"/>
     <property name="graphic" value="cortana"/>
-    <property name="radius" value="150"/>
+    <property name="radius" value="200"/>
    </properties>
    <point/>
   </object>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="57">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="80" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="59">
  <properties>
   <property name="display_name" value="Rooftop Level"/>
   <property name="display_title" value="Main Building (R)"/>
@@ -193,13 +193,13 @@
     <property name="character_id" value="Munaf"/>
     <property name="direction" value="left"/>
     <property name="graphic" value="munaf"/>
-    <property name="radius" value="0"/>
+    <property name="radius" value="200"/>
    </properties>
    <point/>
   </object>
   <object id="3" name="Character" x="738" y="461">
    <properties>
-    <property name="character_id" value="Cortana"/>
+    <property name="character_id" value="Cortana_r"/>
     <property name="direction" value="down"/>
     <property name="graphic" value="cortana"/>
     <property name="radius" value="0"/>
@@ -231,6 +231,15 @@
    <properties>
     <property name="direction" value="up"/>
     <property name="pos" value="main_3_reception"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="58" name="Character" x="576" y="256">
+   <properties>
+    <property name="character_id" value="Atticus_r"/>
+    <property name="direction" value="left"/>
+    <property name="graphic" value="atticus"/>
+    <property name="radius" value="0"/>
    </properties>
    <point/>
   </object>

@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="11" height="17" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="15">
  <properties>
-  <property name="display_name" value="Computer Lab 5 (Mac Lab)"/>
-  <property name="display_title" value="Main Building (L2)"/>
+  <property name="display_name" value="Computer Lab 5 (Mac Lab)" />
+  <property name="display_title" value="Main Building (L2)" />
  </properties>
  <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
-  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968" />
  </tileset>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1551" version="1.10" tiledversion="1.11.2" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19"><image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392" />
+</tileset>
  <layer id="1" name="Floor" width="11" height="17">
   <data encoding="csv">
 11,553,553,553,553,553,553,553,553,553,12,
@@ -53,31 +54,31 @@
  <objectgroup id="3" name="Entities">
   <object id="1" name="Player" x="148" y="535.333">
    <properties>
-    <property name="direction" value="right"/>
-    <property name="pos" value="main_2_library"/>
+    <property name="direction" value="right" />
+    <property name="pos" value="main_2_library" />
    </properties>
-   <point/>
+   <point />
   </object>
  </objectgroup>
  <objectgroup id="4" name="Collisions">
-  <object id="2" x="-64" y="-68" width="832" height="225.333"/>
-  <object id="3" x="638.67" y="-65.333" width="129.333" height="902.667"/>
-  <object id="4" x="-130.667" y="-69.333" width="193.333" height="481.333"/>
-  <object id="5" x="-129.333" y="609.33" width="194.667" height="540"/>
-  <object id="6" x="-64" y="986.67" width="514.667" height="164"/>
-  <object id="7" x="384" y="940" width="128" height="146.667"/>
-  <object id="8" x="446.67" y="893.33" width="132" height="130.667"/>
-  <object id="9" x="512" y="833.33" width="129.333" height="116"/>
-  <object id="10" x="574.67" y="769.33" width="174.667" height="132"/>
-  <object id="11" x="186.75" y="621.75" width="266.5" height="228.5"/>
-  <object id="12" x="314.083" y="240.417" width="266.5" height="228.5"/>
-  <object id="13" x="127" y="222.75" width="130" height="103.5"/>
+  <object id="2" x="-64" y="-68" width="832" height="225.333" />
+  <object id="3" x="638.67" y="-65.333" width="129.333" height="902.667" />
+  <object id="4" x="-130.667" y="-69.333" width="193.333" height="481.333" />
+  <object id="5" x="-129.333" y="609.33" width="194.667" height="540" />
+  <object id="6" x="-64" y="986.67" width="514.667" height="164" />
+  <object id="7" x="384" y="940" width="128" height="146.667" />
+  <object id="8" x="446.67" y="893.33" width="132" height="130.667" />
+  <object id="9" x="512" y="833.33" width="129.333" height="116" />
+  <object id="10" x="574.67" y="769.33" width="174.667" height="132" />
+  <object id="11" x="186.75" y="621.75" width="266.5" height="228.5" />
+  <object id="12" x="314.083" y="240.417" width="266.5" height="228.5" />
+  <object id="13" x="127" y="222.75" width="130" height="103.5" />
  </objectgroup>
  <objectgroup id="5" name="Transition">
   <object id="14" x="44" y="445" width="4" height="189.333">
    <properties>
-    <property name="pos" value="main_2_lab5"/>
-    <property name="target" value="main_2_library"/>
+    <property name="pos" value="main_2_lab5" />
+    <property name="target" value="main_2_library" />
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="17" height="30" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="23">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="17" height="30" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="24">
  <properties>
   <property name="display_name" value="Upper Rooftop Level"/>
   <property name="display_title" value="Main Building (UR)"/>
@@ -100,6 +100,15 @@
    <properties>
     <property name="direction" value="up"/>
     <property name="pos" value="main_upperrooftop_hall7"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" name="Character" x="606" y="895.333">
+   <properties>
+    <property name="character_id" value="Atticus_ur"/>
+    <property name="direction" value="left"/>
+    <property name="graphic" value="atticus"/>
+    <property name="radius" value="0"/>
    </properties>
    <point/>
   </object>

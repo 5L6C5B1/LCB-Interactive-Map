@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="19" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="32">
  <properties>
-  <property name="display_name" value="Computer Lab 3"/>
-  <property name="display_title" value="Main Building (L3)"/>
+  <property name="display_name" value="Computer Lab 3" />
+  <property name="display_title" value="Main Building (L3)" />
  </properties>
- <tileset firstgid="1" source="../tilesets/LCB_indoor.tsx"/>
- <tileset firstgid="1551" source="../tilesets/LCB_furnishing.tsx"/>
+ <tileset firstgid="1" version="1.10" tiledversion="1.11.2" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25"><image source="../../graphics/tilesets/indoor.png" width="1600" height="3968" />
+</tileset>
+ <tileset firstgid="1551" version="1.10" tiledversion="1.11.2" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19"><image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392" />
+</tileset>
  <layer id="1" name="Floor" width="28" height="19">
   <data encoding="csv">
 11,553,553,553,553,553,553,553,553,553,12,11,553,553,553,553,553,553,553,554,0,0,0,0,0,0,0,0,
@@ -55,41 +57,41 @@
  <objectgroup id="3" name="Entities">
   <object id="1" name="Player" x="159" y="275.5">
    <properties>
-    <property name="direction" value="down"/>
-    <property name="pos" value="main_3"/>
+    <property name="direction" value="down" />
+    <property name="pos" value="main_3" />
    </properties>
-   <point/>
+   <point />
   </object>
  </objectgroup>
  <objectgroup id="4" name="Collisions">
-  <object id="2" x="3" y="1" width="1405.5" height="159"/>
-  <object id="3" x="1.3333" y="2" width="64" height="1212"/>
-  <object id="4" x="2.8333" y="1108.33" width="654.167" height="107.333"/>
-  <object id="6" x="639" y="1049" width="258.5" height="166.5"/>
-  <object id="8" x="936.75" y="1112.75" width="791" height="100"/>
-  <object id="9" x="1663" y="1045.5" width="82.5" height="105.75"/>
-  <object id="13" x="1726.5" y="548" width="66" height="603.25"/>
-  <object id="15" x="639.333" y="3" width="128.667" height="218.333"/>
-  <object id="16" x="93.5" y="792.5" width="101" height="162"/>
-  <object id="17" x="315.25" y="748.25" width="266.5" height="228.5"/>
-  <object id="18" x="314.75" y="235.25" width="266.5" height="228.5"/>
-  <object id="19" x="826.75" y="234.75" width="266.5" height="228.5"/>
-  <object id="20" x="827.75" y="746.25" width="266.5" height="228.5"/>
-  <object id="21" x="1338.25" y="747.25" width="266.5" height="228.5"/>
-  <object id="24" x="1216.17" y="64.3335" width="128.667" height="127.333"/>
-  <object id="25" x="1278.67" y="128.334" width="128.667" height="127.333"/>
-  <object id="26" x="1343.67" y="192.334" width="128.667" height="127.333"/>
-  <object id="27" x="1408.17" y="256.334" width="128.667" height="127.333"/>
-  <object id="28" x="1472.67" y="319.834" width="128.667" height="127.333"/>
-  <object id="29" x="1535.67" y="384.334" width="128.667" height="127.333"/>
-  <object id="30" x="1599.67" y="448.834" width="192.667" height="127.333"/>
-  <object id="31" x="831.667" y="1049.39" width="128.667" height="167"/>
+  <object id="2" x="3" y="1" width="1405.5" height="159" />
+  <object id="3" x="1.3333" y="2" width="64" height="1212" />
+  <object id="4" x="2.8333" y="1108.33" width="654.167" height="107.333" />
+  <object id="6" x="639" y="1049" width="258.5" height="166.5" />
+  <object id="8" x="936.75" y="1112.75" width="791" height="100" />
+  <object id="9" x="1663" y="1045.5" width="82.5" height="105.75" />
+  <object id="13" x="1726.5" y="548" width="66" height="603.25" />
+  <object id="15" x="639.333" y="3" width="128.667" height="218.333" />
+  <object id="16" x="93.5" y="792.5" width="101" height="162" />
+  <object id="17" x="315.25" y="748.25" width="266.5" height="228.5" />
+  <object id="18" x="314.75" y="235.25" width="266.5" height="228.5" />
+  <object id="19" x="826.75" y="234.75" width="266.5" height="228.5" />
+  <object id="20" x="827.75" y="746.25" width="266.5" height="228.5" />
+  <object id="21" x="1338.25" y="747.25" width="266.5" height="228.5" />
+  <object id="24" x="1216.17" y="64.3335" width="128.667" height="127.333" />
+  <object id="25" x="1278.67" y="128.334" width="128.667" height="127.333" />
+  <object id="26" x="1343.67" y="192.334" width="128.667" height="127.333" />
+  <object id="27" x="1408.17" y="256.334" width="128.667" height="127.333" />
+  <object id="28" x="1472.67" y="319.834" width="128.667" height="127.333" />
+  <object id="29" x="1535.67" y="384.334" width="128.667" height="127.333" />
+  <object id="30" x="1599.67" y="448.834" width="192.667" height="127.333" />
+  <object id="31" x="831.667" y="1049.39" width="128.667" height="167" />
  </objectgroup>
  <objectgroup id="5" name="Transition">
   <object id="22" x="127.875" y="222.25" width="64.25" height="2.875">
    <properties>
-    <property name="pos" value="main_3_lab3"/>
-    <property name="target" value="main_3"/>
+    <property name="pos" value="main_3_lab3" />
+    <property name="target" value="main_3" />
    </properties>
   </object>
  </objectgroup>
