@@ -1,10 +1,171 @@
-Assets used:
+Assets used in this project:
 
-FONTS
-- Retropix [Menu Screen]
+💬 FONTS
+- dogicapixel + dogicapixelbold
+https://fontmeme.com/fonts/dogica-font/
+Designed by Roberto Mocci.
 
-The FontStruction “RetroPix” (https://fontstruct.com/fontstructions/show/1716995) by Brandon Kleeman is licensed under a Creative Commons Attribution license (http://creativecommons.org/licenses/by/3.0/).
+- PixeloidSans
+https://fontmeme.com/fonts/pixeloid-sans-font/
+Designed by GGBotNet.
 
-ICONS
-- Scale
-https://www.flaticon.com/free-icons/weigh. Weigh icons created by Dooder - Flaticon
+- VT323-Regular
+https://fontmeme.com/fonts/vt323-font/
+Designed by Peter Hull.
+
+- Retropix
+https://fontstruct.com/fontstructions/show/1716995
+Made by Brandon Kleeman, is licensed under a Creative Commons Attribution license (http://creativecommons.org/licenses/by/3.0/).
+
+
+==============================
+
+
+ℹ️ ICONS (All used in Course Index)
+*All logos of University Partners were unedited and left as is from the moment they were retrieved.
+
+- LCB logo and icon
+https://en.wikipedia.org/wiki/Laksamana_College_of_Business
+
+- University of Essex logo
+https://www.youtube.com/user/uniessex
+
+- University of Essex banner
+https://essex.stageclip.com/
+
+- Kensington College of Business logo
+https://ihe.ac.uk/our-members/kensington-college-business
+
+- Kensington College of Business banner
+https://www.lcb.edu.bn/study/
+
+- City & Guilds logo
+https://housix.uk/home/city-and-guilds-logo-xl-1-1024x683/
+
+- City & Guilds banner
+https://academy.tblgroup.co.za/city-guilds-logo-2023-2/
+
+- Pearson BTEC logo
+https://www.pearson.com/asia/learner/Qualifications.html
+
+- Pearson BTEC banner
+https://www.serc.ac.uk/news/article/BTEC-Awards
+
+- Pixel Business Icons (excluding university partners)
+https://www.flaticon.com/packs/pixel-art-business-elements-14974373
+Icons made by Dooder from www.flaticon.com.
+*icons were renamed
+Included .png icons: accounting, appdev, business, busman, compsci, hospitality, it, law, marketing, softeng, sports
+
+- Plane Icon
+https://www.flaticon.com/free-icon/plane_870194?term=plane&page=1&position=8&origin=search&related_id=870194
+Icon made by Freepik from www.flaticon.com.
+*icon was edited
+
+- Culinary Icon
+https://www.flaticon.com/free-icon/culinary_12356008?term=culinary&related_id=12356008
+Icon made by Freepik from www.flaticon.com.
+*icon was edited
+
+- Food and Beverage Icon
+https://www.flaticon.com/free-icon/fast-food_3655692?term=food+and+beverage&related_id=3655692
+Icon made by Freepik from www.flaticon.com.
+*icon was edited
+
+- Roll-cake (Patisserie) Icon
+https://www.flaticon.com/free-icon/roll-cake_4080175?term=roll-cake&page=1&position=60&origin=search&related_id=4080175
+
+
+==============================
+
+
+🖼️ UI
+- Back Button (how to play menu)
+https://pixelartmaker.com/art/07b65bc375dfcca
+Made by 1ebcc1
+
+- Speaker Buttons
+https://leo-red.itch.io/lucid-icon-pack
+Made by Leo Red on itch.io
+
+- Keyboard UI (how to play menu)
+https://dreammixgames.itch.io/keyboard-keys-for-ui
+Made by Dream Mix on itch.io
+
+- RPG Cursors
+https://dreammixgames.itch.io/rpg-mouse-cursors
+Made by Dream Mix on itch.io
+
+- Pixel Old Tech Extended Oblong (main menu and pause menu buttons)
+Made by Diego Solas from Trendify. Available on Canva.
+
+
+==============================
+
+
+🔉 AUDIO
+- notice.wav (NPC notice sound)
+https://github.com/clear-code-projects/Python-Monsters
+Retrieved from ClearCode on GitHub through "Creating a Pokémon inspired RPG in Python & Pygame" tutorial on Youtube (https://www.youtube.com/watch?v=fo4e3njyGy0)
+
+- Gunma-chanGambol.ogg (background music)
+https://opengameart.org/content/gunma-chan-gambol
+By Yubatake on opengameart.org
+
+
+==============================
+
+
+👥 CHARACTERS
+- All character sprite sheets were retrieved from an Asset Pack made by scarloxy on itch.io.
+"MonsterTaming Game Essentials - MyPixelWorld Special Packs #01"
+https://scarloxy.itch.io/mpwsp01
+Included & Edited Characters:
+- blond > Alcina
+- grass_boss > Nico and Munaf
+- hat_girl > Chell
+- purple_girl > Enise
+- straw > Atticus
+- water_boss > Cortana
+
+Included & Unedited Characters
+- fire_boss (Amjad)
+- player
+
+
+==============================
+
+
+🎮 MINIGAMES
+*All minigames were retrieved from ClearCode, all code and assets were followed exactly 
+    from the tutorial with minor changes in the main codes to link both games to the application.
+
+- Breakout
+https://github.com/clear-code-projects/Breakout
+Retrieved from ClearCode on GitHub through "Breakout in python" tutorial on Youtube (https://www.youtube.com/watch?v=4tVC1vhxiao)
+
+- Space Invaders
+https://github.com/clear-code-projects/Breakout
+Retrieved from ClearCode on GitHub through "Creating Space Invaders" tutorial on Youtube (https://www.youtube.com/watch?v=4tVC1vhxiao)
+
+
+==============================
+
+
+➕ MISC
+- Main menu background image (Culinary building)
+https://m.blog.naver.com/flywithrim/222024907067
+
+- Codes
+As the "Creating a Pokémon inspired RPG in Python & Pygame" tutorial by ClearCode 
+    on Youtube (https://www.youtube.com/watch?v=fo4e3njyGy0) was the backbone/foundation of this project,
+    some of his codes were added as well as slightly edited.
+
+- Tilesets
+Both indoor and furnishing tilesets were mostly drawn by me.
+    Some drawings such as the chairs, tables, etc. were retrieved and/or edited from LimeZu's Modern Interiors tilesets
+    along with reference from scarloxy's tilesets from "MonsterTaming Game Essentials - MyPixelWorld Special Packs #01".
+
+"MonsterTaming Game Essentials - MyPixelWorld Special Packs #01" by scarloxy. https://scarloxy.itch.io/mpwsp01
+"Modern Interiors" - LimeZu. https://limezu.itch.io/moderninteriors
+"Main Character’s Home – Free Top-Down Pixel Art Asset" by CraftPix.net. https://craftpix.net/freebies/main-characters-home-free-top-down-pixel-art-asset/ (library stairs to upper library)
