@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="14" height="12" tilewidth="64" tileheight="64" infinite="0" nextlayerid="6" nextobjectid="22">
+ <properties>
+  <property name="display_name" value="Level 3"/>
+  <property name="display_title" value="Annexe Building (L3)"/>
+ </properties>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
+ <layer id="1" name="Floor" width="14" height="12">
+  <data encoding="csv">
+11,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,1153,12,
+1201,1178,113,1178,1178,1178,1178,1178,1178,1178,1178,113,1178,1205,
+1201,1203,588,113,1203,1203,1203,1203,1203,1203,1203,588,1203,64,
+1201,1228,613,1183,1228,1228,1228,1228,1228,1228,1228,613,1228,1033,
+1201,25,638,1208,25,25,25,25,25,25,25,638,25,1058,
+1201,25,25,1233,25,25,25,25,25,25,25,25,25,1083,
+1201,25,25,25,25,25,25,25,25,25,25,25,25,25,
+1201,25,25,25,25,25,25,25,25,25,25,25,25,390,
+1201,25,25,25,25,25,25,25,25,25,25,25,25,1205,
+1201,25,25,25,61,25,25,25,25,25,25,25,25,1205,
+36,412,414,1278,39,1051,1052,89,1278,1278,1278,1278,1278,37,
+0,0,0,0,1226,1076,1077,1230,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="Furnishing" width="14" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1566,1565,0,0,0,0,0,0,0,0,0,0,
+0,0,1585,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="3" name="Entities">
+  <object id="1" name="Player" x="256" y="448">
+   <properties>
+    <property name="direction" value="up"/>
+    <property name="pos" value="annexe_2"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="2" name="Player" x="768" y="414">
+   <properties>
+    <property name="direction" value="left"/>
+    <property name="pos" value="annexe_3_theroof"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="21" name="Character" x="320" y="320">
+   <properties>
+    <property name="character_id" value="Atticus_a3"/>
+    <property name="direction" value="down"/>
+    <property name="graphic" value="atticus"/>
+    <property name="radius" value="0"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Collisions">
+  <object id="3" x="0" y="0.666667" width="896.667" height="155.333"/>
+  <object id="4" x="128" y="64" width="63.5" height="157"/>
+  <object id="5" x="191.25" y="127.5" width="63.5" height="157"/>
+  <object id="6" x="-1" y="-1" width="68" height="769"/>
+  <object id="7" x="-1" y="705" width="321" height="65"/>
+  <object id="8" x="-1" y="599.5" width="92" height="171"/>
+  <object id="9" x="164" y="598" width="156.5" height="171.5"/>
+  <object id="10" x="255.5" y="536" width="65" height="232.5"/>
+  <object id="11" x="447.5" y="596" width="513.5" height="172"/>
+  <object id="12" x="832" y="465.5" width="66" height="300"/>
+  <object id="13" x="832.5" y="-1" width="63" height="286"/>
+  <object id="14" x="704" y="63.3333" width="65.3333" height="157.333"/>
+ </objectgroup>
+ <objectgroup id="5" name="Transition">
+  <object id="15" x="80.3333" y="654" width="95.3333" height="5.33333">
+   <properties>
+    <property name="pos" value="annexe_3"/>
+    <property name="target" value="annexe_g"/>
+   </properties>
+  </object>
+  <object id="17" x="303.25" y="688.5" width="161.25" height="5">
+   <properties>
+    <property name="pos" value="annexe_3"/>
+    <property name="target" value="annexe_2"/>
+   </properties>
+  </object>
+  <object id="19" x="857" y="319.5" width="5.25" height="164">
+   <properties>
+    <property name="pos" value="annexe_3"/>
+    <property name="target" value="annexe_3_theroof"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="64" infinite="0" nextlayerid="7" nextobjectid="81">
+ <properties>
+  <property name="display_name" value="Reception"/>
+  <property name="display_title" value="Main Building (L3)"/>
+ </properties>
+ <tileset firstgid="1" name="LCB_indoor" tilewidth="64" tileheight="64" tilecount="1550" columns="25">
+  <image source="../../graphics/tilesets/indoor.png" width="1600" height="3968"/>
+ </tileset>
+ <tileset firstgid="1551" name="LCB_furnishing" tilewidth="64" tileheight="64" tilecount="1007" columns="19">
+  <image source="../../graphics/tilesets/furnishing.png" width="1216" height="3392"/>
+ </tileset>
+ <layer id="1" name="Floor" width="20" height="21">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,152,153,153,153,12,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,176,177,178,178,178,60,
+0,0,0,0,0,0,0,0,0,0,0,0,0,176,177,202,203,203,203,55,
+0,0,0,0,0,0,0,0,0,0,0,0,0,201,202,227,228,228,228,55,
+11,3,3,3,12,0,0,0,0,0,0,0,0,201,227,155,253,253,253,55,
+56,28,28,28,55,0,0,0,0,0,0,0,0,226,155,253,253,253,253,55,
+63,53,53,53,55,0,0,0,0,0,0,0,0,251,280,253,253,253,253,55,
+28,78,78,78,85,0,0,0,0,0,0,0,0,135,40,88,253,253,253,55,
+53,50,50,50,64,3,3,3,3,3,3,3,3,3,14,24,253,253,253,55,
+78,50,50,50,28,28,28,28,28,28,28,28,28,28,111,24,253,253,253,55,
+376,50,50,50,53,53,53,53,53,53,53,53,53,53,28,24,253,253,253,210,
+81,50,50,50,78,78,78,78,78,78,78,78,78,78,53,24,24,253,253,210,
+81,50,50,50,50,50,50,50,50,50,50,50,50,50,78,24,24,24,24,210,
+81,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,210,
+81,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,210,
+81,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,210,
+81,50,50,89,402,404,128,402,404,88,50,50,61,50,50,50,50,50,50,210,
+81,50,50,210,0,0,0,0,0,81,50,50,86,50,50,50,50,50,50,210,
+1,1,1,1,0,0,0,0,0,1,1,1,51,50,50,50,50,50,50,210,
+0,0,0,0,0,0,0,0,0,0,0,0,51,50,50,50,50,50,50,210,
+0,0,0,0,0,0,0,0,0,0,0,0,36,128,402,403,403,404,128,37
+</data>
+ </layer>
+ <layer id="2" name="Furnishing" width="20" height="21">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1591,0,
+0,0,0,0,0,0,0,0,0,0,0,0,152,177,0,0,0,0,1610,0,
+0,0,0,0,0,0,0,0,0,0,0,0,226,202,0,0,0,0,0,0,
+0,448,449,450,0,0,0,0,0,0,0,0,226,227,0,0,0,0,0,0,
+0,473,474,475,0,0,0,0,0,0,0,0,251,252,253,0,0,0,0,0,
+0,498,499,500,0,0,0,0,0,0,0,0,0,40,88,253,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1567,1568,1659,1660,1661,1662,1663,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1586,1587,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1605,1606,0,0,1773,1774,1774,1774,1775,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1766,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,1785,1786,1786,1786,1786,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="4" name="Entities">
+  <object id="42" name="Player" x="512" y="832">
+   <properties>
+    <property name="direction" value="down"/>
+    <property name="pos" value="spawn"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="47" name="Player" x="416.33" y="930.337">
+   <properties>
+    <property name="direction" value="up"/>
+    <property name="pos" value="main_rooftop"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="62" name="Player" x="1022.67" y="1244">
+   <properties>
+    <property name="direction" value="up"/>
+    <property name="pos" value="main_3"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="64" name="Character" x="1130" y="970">
+   <properties>
+    <property name="character_id" value="Cortana"/>
+    <property name="direction" value="left"/>
+    <property name="graphic" value="cortana"/>
+    <property name="radius" value="200"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Collisions">
+  <object id="11" x="52.5003" y="287.166" width="214.167" height="142.167"/>
+  <object id="12" x="252" y="287.333" width="22.6667" height="380"/>
+  <object id="13" x="253.333" y="560.667" width="706.666" height="106"/>
+  <object id="16" x="575.997" y="640.667" width="384.666" height="106"/>
+  <object id="21" x="905.337" y="635.336" width="374.333" height="223.334"/>
+  <object id="22" x="1215.22" y="846.125" width="65.4545" height="496.333"/>
+  <object id="24" x="1123.51" y="1249.15" width="108.909" height="95"/>
+  <object id="25" x="815.583" y="1250.66" width="108.833" height="94.0833"/>
+  <object id="27" x="766.67" y="994.337" width="66.6667" height="349.333"/>
+  <object id="30" x="549.08" y="994.33" width="92.0833" height="173.667"/>
+  <object id="34" x="356.916" y="993.66" width="118.167" height="95.1818"/>
+  <object id="36" x="191.333" y="996" width="91.5" height="220.25"/>
+  <object id="39" x="-44.3337" y="287" width="108.333" height="252.334"/>
+  <object id="40" x="-43.1667" y="671.333" width="109.833" height="544.667"/>
+  <object id="71" x="44" y="512.5" width="11.5" height="192">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="inaccessible" value="It's the express evelator down. I don't feel like going just yet."/>
+   </properties>
+  </object>
+  <object id="73" x="-80" y="430" width="130" height="316"/>
+  <object id="77" x="0" y="1122" width="256" height="94"/>
+  <object id="78" x="52.1818" y="1118.64" width="151.5" height="6">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="stairs" value="It's the fire escape staircase."/>
+   </properties>
+  </object>
+  <object id="79" x="573.333" y="1123.33" width="256" height="94"/>
+  <object id="80" x="624.85" y="1119.96" width="151.5" height="6">
+   <properties>
+    <property name="collision_type" value="blocked"/>
+    <property name="stairs" value="It's the fire escape staircase."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="Transition">
+  <object id="68" x="922.5" y="1285.5" width="202" height="11">
+   <properties>
+    <property name="pos" value="main_3_reception"/>
+    <property name="target" value="main_3"/>
+   </properties>
+  </object>
+  <object id="69" x="464.833" y="1031.33" width="92.1667" height="4.33333">
+   <properties>
+    <property name="pos" value="main_3_reception"/>
+    <property name="target" value="main_rooftop"/>
+   </properties>
+  </object>
+  <object id="75" x="273.417" y="1029.83" width="92.1667" height="4.33333">
+   <properties>
+    <property name="pos" value="main_3_reception"/>
+    <property name="target" value="main_rooftop"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
