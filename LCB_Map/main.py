@@ -626,7 +626,7 @@ class Game:
   
     # How to Play menu
     def howTo(self):
-        back_icon = pygame.image.load('graphics/icons/back.png')
+        back_icon = pygame.image.load(resource_path('graphics/icons/back.png'))
         back_icon_resize = pygame.transform.scale(back_icon, (48, 48))
 
         while True:
