@@ -320,7 +320,7 @@ CHARACTER_DATA = {
             'sc':{
                 'text': [
                     'Yup. Student council. We host and manage events, as well as volunteer for other events if we\'re needed.',
-                    'You can talk to our student council president, Munaf, up at the rooftop level if you have more questions.'
+                    'You can talk to our student council president, Najib, up at the rooftop level if you have more questions.'
                 ],
                 'options': [
                     {'text': 'I see, thank you.', 'next': 'end'}
@@ -665,13 +665,13 @@ CHARACTER_DATA = {
     },
 
     # student council
-    'Munaf': {
-        'name': 'Munaf',
+    'Najib': {
+        'name': 'Najib',
         'directions': ['left'],
         'look_around': True,
         'dialog': {
             'start': {
-                'text': 'Hey, I\'m Munaf! Are you interested in joining the student council?',
+                'text': 'Hey, I\'m Najib! Are you interested in joining the student council?',
                 'options': [
                     {'text': 'What\'s that?', 'next': 'sc'},
                     {'text': 'No, just passing through.', 'next': 'end'}
