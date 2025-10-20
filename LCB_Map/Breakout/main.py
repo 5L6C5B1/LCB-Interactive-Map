@@ -3,6 +3,7 @@ from settings import *
 from sprites import Player, Ball, Block, Upgrade, Projectile
 from surfacemaker import SurfaceMaker
 from random import choice, randint
+from support import resource_path
 
 class Game:
 	def __init__(self):
@@ -28,26 +29,26 @@ class Game:
 		self.ball = Ball(self.all_sprites,self.player,self.block_sprites)
 
 		# hearts
-		self.heart_surf = pygame.image.load('graphics/other/heart.png').convert_alpha()
+		self.heart_surf = pygame.image.load(resource_path('graphics/other/heart.png')).convert_alpha()
 
 		# projectile
-		self.projectile_surf = pygame.image.load('graphics/other/projectile.png').convert_alpha()
+		self.projectile_surf = pygame.image.load(resource_path('graphics/other/projectile.png')).convert_alpha()
 		self.can_shoot = True
 		self.shoot_time = 0
 
 		# crt
 		self.crt = CRT()
 
-		self.laser_sound = pygame.mixer.Sound('sounds/laser.wav')
+		self.laser_sound = pygame.mixer.Sound(resource_path('sounds/laser.wav'))
 		self.laser_sound.set_volume(0.1)
 
-		self.powerup_sound = pygame.mixer.Sound('sounds/powerup.wav')
+		self.powerup_sound = pygame.mixer.Sound(resource_path('sounds/powerup.wav'))
 		self.powerup_sound.set_volume(0.1)
 
-		self.laserhit_sound = pygame.mixer.Sound('sounds/laser_hit.wav')
+		self.laserhit_sound = pygame.mixer.Sound(resource_path('sounds/laser_hit.wav'))
 		self.laserhit_sound.set_volume(0.02)
 
-		self.music = pygame.mixer.Sound('sounds/music.wav')
+		self.music = pygame.mixer.Sound(resource_path('sounds/music.wav'))
 		self.music.set_volume(0.1)
 		self.music.play(loops = -1)
 
@@ -56,7 +57,7 @@ class Game:
 		Upgrade(pos,upgrade_type,[self.all_sprites,self.upgrade_sprites])
 
 	def create_bg(self):
-		bg_original = pygame.image.load('graphics/other/bg.png').convert()
+		bg_original = pygame.image.load(resource_path('graphics/other/bg.png')).convert()
 		scale_factor = WINDOW_HEIGHT / bg_original.get_height()
 		scaled_width = bg_original.get_width() * scale_factor
 		scaled_height = bg_original.get_height() * scale_factor
@@ -159,7 +160,7 @@ class Game:
 
 class CRT:
 	def __init__(self):
-		vignette = pygame.image.load('graphics/other/tv.png').convert_alpha()
+		vignette = pygame.image.load(resource_path('graphics/other/tv.png')).convert_alpha()
 		self.scaled_vignette = pygame.transform.scale(vignette,(WINDOW_WIDTH,WINDOW_HEIGHT))
 		self.display_surface = pygame.display.get_surface()
 		self.create_crt_lines()
