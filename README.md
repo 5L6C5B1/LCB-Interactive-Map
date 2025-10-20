@@ -5,6 +5,7 @@ An interactive map of Laksamana College of Business. Made with Python + Pygame C
 - Fully mapped out areas of the college
 - NPC Interaction
 - Minigames
+- Course Index (list of courses offered by the college)
 
 **Controls:**
 - WASD/Arrow keys to move
