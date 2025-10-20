@@ -402,16 +402,23 @@ class Game:
         self.minigame_callback = callback
         self.minigame_active = True
         
-        # Minigames are inside LCB_Map folder, so use relative paths from current directory
+        # Get the base directory (works for both .py and .exe)
+        if getattr(sys, 'frozen', False):
+            # Run as compiled .exe
+            base_dir = Path(sys.executable).parent
+        else:
+            # Run as .py script
+            base_dir = Path.cwd()
+        
         if game_name == 'space_invaders':
             possible_paths = [
-                Path('Space_Invaders/code/main.py'),
-                Path('Space_Invaders/main.py'),
+                base_dir / 'Space_Invaders' / 'Space_Invaders.exe',
+                base_dir / 'Space_Invaders' / 'main.exe',
             ]
         elif game_name == 'breakout':
             possible_paths = [
-                Path('Breakout/main.py'),
-                Path('Breakout/code/main.py'),
+                base_dir / 'Breakout' / 'Breakout.exe',
+                base_dir / 'Breakout' / 'main.exe',
             ]
         else:
             print(f"Unknown game: {game_name}")
@@ -426,14 +433,14 @@ class Game:
         for path in possible_paths:
             if path.exists():
                 minigame_path = path
-                print(f"Found minigame at: {path.absolute()}")
+                print(f"Found minigame at: {minigame_path.absolute()}")
                 break
         
         if minigame_path is None:
-            print(f"ERROR: Minigame '{game_name}' not found in any of these locations:")
+            print(f"ERROR: Minigame '{game_name}' .exe not found in any of these locations:")
             for path in possible_paths:
                 print(f"  - {path.absolute()}")
-            print(f"Current directory: {Path.cwd()}")
+            print(f"Base directory: {base_dir}")
             self.minigame_active = False
             if self.minigame_callback:
                 self.minigame_callback('lose')
@@ -441,24 +448,14 @@ class Game:
             return
         
         try:
-            print(f"Launching minigame: {minigame_path.absolute()}") # debug
-
-            if minigame_path.parent.name == 'code':
-                # If main.py is in a 'code' subfolder, go up one more level
-                working_dir = minigame_path.parent.parent.absolute()
-            else:
-                # Otherwise use the direct parent
-                working_dir = minigame_path.parent.absolute()
+            print(f"Launching minigame: {minigame_path.absolute()}")
             
-            print(f"Working directory: {working_dir}") # debug
-            
-            # Launch minigame as subprocess
+            # Launch minigame as subprocess (now using .exe directly)
             result = subprocess.run(
-                [sys.executable, str(minigame_path.absolute())],
+                [str(minigame_path.absolute())],
                 capture_output=True,
                 text=True,
                 timeout=300,  # 5 minute timeout
-                cwd=str(working_dir)
             )
             
             print(f"Minigame exited with code: {result.returncode}")

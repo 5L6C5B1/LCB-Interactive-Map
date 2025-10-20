@@ -461,7 +461,7 @@ CHARACTER_DATA = {
                 'text': [
                     'On my right is the library and beside it are some lockers you can rent out.',
                     'Going up the hall leads to Lecture Halls 4, 5, and 6, Lecture Room 4, and the cafeteria.',
-                    'There\'s also Tutorial Room 1 and some offices. Our Counselling Unit office is next to the incubation centre.'
+                    'There\'s also Tutorial Room 1 and some offices. Our Counselling Unit office is next to the incuvation centre.',
                     'It looks like a train, you can\'t miss it.'
                 ],
                 'options': [
@@ -514,17 +514,17 @@ CHARACTER_DATA = {
                 'text': [
                     'You\'ve passed the library and the locker room beside it.',
                     'Going up the hall leads to Lecture Halls 4, 5, and 6, as well as Lecture Room 4.',
-                    'We also have some offices here and a meeting room. Then there\'s our guidance counsellor\'s office next to the incubation centre.',
+                    'We also have some offices here and a meeting room. Then there\'s our guidance counsellor\'s office next to the incuvation centre.',
                     'It looks like a train, you can\'t miss it.'
                 ],
                 'options': [
                     {'text': 'Thanks.', 'next': 'end'},
-                    {'text': 'Incubation?', 'next': 'incuvation'},
+                    {'text': 'Incuvation?', 'next': 'incuvation'},
                 ]
             },
             'incuvation': {
                 'text': [
-                    'The incubation centre is where you can propose business ideas to LCB.',
+                    'The incuvation centre is where you can propose business ideas to LCB.',
                     'Two foundation students proposed to rebrand the Kiosk in the library and turned it into a stationery shop.',
                     'Isn\'t that inspiring?'
                 ],
