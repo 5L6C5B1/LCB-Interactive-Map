@@ -1,10 +1,11 @@
 import pygame
+from support import resource_path
 
 class Alien(pygame.sprite.Sprite):
 	def __init__(self,color,x,y):
 		super().__init__()
 		file_path = 'graphics/' + color + '.png'
-		self.image = pygame.image.load(file_path).convert_alpha()
+		self.image = pygame.image.load(resource_path(file_path)).convert_alpha()
 		self.rect = self.image.get_rect(topleft = (x,y))
 
 		if color == 'red': self.value = 100
@@ -17,7 +18,7 @@ class Alien(pygame.sprite.Sprite):
 class Extra(pygame.sprite.Sprite):
 	def __init__(self,side,screen_width):
 		super().__init__()
-		self.image = pygame.image.load('graphics/extra.png').convert_alpha()
+		self.image = pygame.image.load(resource_path('graphics/extra.png')).convert_alpha()
 		
 		if side == 'right':
 			x = screen_width + 50
